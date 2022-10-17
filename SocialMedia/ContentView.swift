@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView{
             tabItemView(view: Text("chat view"), icon: "ellipsis.message")
             
-            tabItemView(view: Text("posts view"), icon: "magnifyingglass")
+            tabItemView(view: ExploreCardImageView(exploreModel: DeveloperPreview.instance.exploreCardModel), icon: "magnifyingglass")
             
             tabItemView(view: ProfileView(), icon: "person")
             

@@ -17,6 +17,11 @@
 		A89F001528FD85650070B280 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F001428FD85650070B280 /* NetworkingManager.swift */; };
 		A89F001928FD86F60070B280 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F001828FD86F60070B280 /* ExploreView.swift */; };
 		A89F001B28FD87220070B280 /* ExploreViewImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F001A28FD87220070B280 /* ExploreViewImageService.swift */; };
+		A89F002028FD90680070B280 /* ExploreCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F001F28FD90680070B280 /* ExploreCardImageView.swift */; };
+		A89F002228FD90B50070B280 /* VM_ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002128FD90B40070B280 /* VM_ExploreView.swift */; };
+		A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */; };
+		A89F002628FD93800070B280 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002528FD93800070B280 /* PreviewProvider.swift */; };
+		A89F002828FD98190070B280 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002728FD98190070B280 /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 		A89F001428FD85650070B280 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		A89F001828FD86F60070B280 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		A89F001A28FD87220070B280 /* ExploreViewImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewImageService.swift; sourceTree = "<group>"; };
+		A89F001F28FD90680070B280 /* ExploreCardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCardImageView.swift; sourceTree = "<group>"; };
+		A89F002128FD90B40070B280 /* VM_ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ExploreView.swift; sourceTree = "<group>"; };
+		A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ExploreCardImageView.swift; sourceTree = "<group>"; };
+		A89F002528FD93800070B280 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		A89F002728FD98190070B280 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +97,7 @@
 		A863120328FD63C000CFA3EF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A89F001C28FD88F00070B280 /* Components */,
 				A863120928FD662900CFA3EF /* Contacts */,
 				A863120828FD661F00CFA3EF /* Explore */,
 				A863120728FD660A00CFA3EF /* Profile */,
@@ -98,6 +109,8 @@
 		A863120428FD63C900CFA3EF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A89F002528FD93800070B280 /* PreviewProvider.swift */,
+				A89F002728FD98190070B280 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +198,32 @@
 		A89F001728FD86E80070B280 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A89F002128FD90B40070B280 /* VM_ExploreView.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A89F001C28FD88F00070B280 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A89F001E28FD89050070B280 /* ViewModel */,
+				A89F001D28FD89020070B280 /* View */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A89F001D28FD89020070B280 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A89F001F28FD90680070B280 /* ExploreCardImageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A89F001E28FD89050070B280 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -260,13 +299,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A89F001928FD86F60070B280 /* ExploreView.swift in Sources */,
+				A89F002628FD93800070B280 /* PreviewProvider.swift in Sources */,
 				A89F001028FD84180070B280 /* ExploreViewDataService.swift in Sources */,
+				A89F002028FD90680070B280 /* ExploreCardImageView.swift in Sources */,
 				A89F001228FD843E0070B280 /* ExploreCardModel.swift in Sources */,
 				A86311F828FD63A200CFA3EF /* ContentView.swift in Sources */,
 				A89F001528FD85650070B280 /* NetworkingManager.swift in Sources */,
 				A863120B28FD664200CFA3EF /* ProfileView.swift in Sources */,
 				A89F001B28FD87220070B280 /* ExploreViewImageService.swift in Sources */,
 				A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */,
+				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
+				A89F002828FD98190070B280 /* UIImage.swift in Sources */,
+				A89F002228FD90B50070B280 /* VM_ExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

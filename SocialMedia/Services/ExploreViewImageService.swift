@@ -17,12 +17,28 @@ class ExploreViewImageService{
     
     init(exploreCard: ExploreCardModel){
         self.excplore = exploreCard
+        
+        getImage()
     }
     
     
     private func getImage(){
         guard let url = URL(string: excplore.downloadURL) else{
             print("invalid download image url")
+            return
         }
+        
+        imageSubscription = NetworkingManger.download(url: url)
+            .tryMap { (data) -> UIImage? in
+                return UIImage(data: data)
+            }
+            .sink(receiveCompletion: NetworkingManger.handleComlition) {[weak self] returnedImage in
+                guard let self = self else{ return}
+                
+                print("1.\(returnedImage?.getSizeIn(.kilobyte))")
+                
+                self.image = returnedImage
+                self.imageSubscription?.cancel()
+            }
     }
 }

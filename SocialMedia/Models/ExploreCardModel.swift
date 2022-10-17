@@ -18,3 +18,16 @@ struct ExploreCardModel: Identifiable, Codable{
         case downloadURL = "download_url"
     }
 }
+
+
+/*
+ 
+ {
+    "id":"117",
+    "author":"Daniel Ebersole",
+    "width":1544,
+    "height":1024,
+    "url":"https://unsplash.com/photos/Q14J2k8VE3U",
+    "download_url":"https://picsum.photos/id/117/1544/1024"}
+ 
+ */

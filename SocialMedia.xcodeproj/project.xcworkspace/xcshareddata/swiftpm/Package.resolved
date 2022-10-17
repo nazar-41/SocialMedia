@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "compositionallayoutdsl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/faberNovel/CompositionalLayoutDSL",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4c1cb10c39ff5a4f3cfb2dfdbca431956ccf172f"
+      }
+    }
+  ],
+  "version" : 2
+}

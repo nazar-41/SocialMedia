@@ -35,7 +35,7 @@ class VM_ExploreCardImageView: ObservableObject{
                 guard let self = self else{return}
                 self.image = returnedImage
                 
-                print("image returned successfully: \(returnedImage?.getSizeIn(.kilobyte))")
+                print("image returned successfully: \(returnedImage?.getSizeIn(.megabyte))")
             }
             .store(in: &cancellables)
 

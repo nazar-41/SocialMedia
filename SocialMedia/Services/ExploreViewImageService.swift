@@ -34,9 +34,7 @@ class ExploreViewImageService{
             }
             .sink(receiveCompletion: NetworkingManger.handleComlition) {[weak self] returnedImage in
                 guard let self = self else{ return}
-                
-                print("1.\(returnedImage?.getSizeIn(.kilobyte))")
-                
+                                
                 self.image = returnedImage
                 self.imageSubscription?.cancel()
             }

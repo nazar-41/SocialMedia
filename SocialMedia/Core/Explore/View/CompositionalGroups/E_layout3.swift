@@ -23,7 +23,7 @@ struct E_layout3: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: (width / 3), height: 123)
                         .cornerRadius(4)
-                      //  .modifier(ContextModifier(card: cards[1]))
+                        .modifier(ContextModifier(card: exploreImage[1]))
                 }
                 if exploreImage.count == 3 {
                     AnimatedImage(url: URL(string: exploreImage[2].downloadURL))
@@ -31,7 +31,7 @@ struct E_layout3: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: (width / 3), height: 123)
                         .cornerRadius(4)
-                      //  .modifier(ContextModifier(card: cards[2]))
+                        .modifier(ContextModifier(card: exploreImage[2]))
                 }
             }
             .frame(maxHeight: .infinity, alignment: .top)
@@ -41,7 +41,7 @@ struct E_layout3: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: (width - (width / 3) + 4), height: 250)
                 .cornerRadius(4)
-              //  .modifier(ContextModifier(card: cards[0]))
+                .modifier(ContextModifier(card: exploreImage[0]))
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
         

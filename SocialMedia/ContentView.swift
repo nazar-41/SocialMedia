@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView{
             tabItemView(view: Text("chat view"), icon: "ellipsis.message")
             
-            tabItemView(view: ExploreCardImageView(exploreModel: DeveloperPreview.instance.exploreCardModel), icon: "magnifyingglass")
+            tabItemView(view: ExploreView(), icon: "magnifyingglass")
             
             tabItemView(view: ProfileView(), icon: "person")
             
@@ -26,6 +26,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(VM_ExploreView())
     }
 }
 

@@ -58,7 +58,7 @@ struct ProfileView: View {
                         //
                     } label: {
                         ZStack{
-                            Color.white.opacity(0.2)
+                            Color.gray.opacity(0.15)
                                 .cornerRadius(10)
                             
                             Text("Edit profile")
@@ -76,7 +76,8 @@ struct ProfileView: View {
             
         }
         .padding()
-        .foregroundColor(.white)
+       // .foregroundColor(.white)
+        .accentColor(.black)
         
     }
 }

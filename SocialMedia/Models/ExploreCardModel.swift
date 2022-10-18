@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ExploreCardModel: Identifiable, Codable{
+struct ExploreCardModel: Identifiable, Codable, Hashable{
     let id: String
     let author: String
     let downloadURL: String

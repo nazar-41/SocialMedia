@@ -29,6 +29,6 @@ struct ExploreCardImageView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreCardImageView(exploreModel: dev.exploreCardModel)
+        ExploreCardImageView(exploreModel: dev.exploreCardModel_1)
     }
 }

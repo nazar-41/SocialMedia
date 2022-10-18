@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "compositionallayoutdsl",
+      "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/faberNovel/CompositionalLayoutDSL",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "4c1cb10c39ff5a4f3cfb2dfdbca431956ccf172f"
+        "revision" : "9248fe561a2a153916fb9597e3af4434784c6d32",
+        "version" : "5.13.4"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
+      "state" : {
+        "revision" : "ed288667c909c89127ab1b690113a3e397af3098",
+        "version" : "2.2.1"
       }
     }
   ],

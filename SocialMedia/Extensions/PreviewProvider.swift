@@ -31,4 +31,22 @@ class DeveloperPreview{
                                               author: "Daniel Ebersole",
                                               downloadURL: "https://picsum.photos/id/1070/5472/3648")
     
+    let contact_1 = ContactModel(name: "Nazar",
+                                 surname: "Velkakayev",
+                                 username: "n41",
+                                 email: "nazarwelkakayew41@gmail.com",
+                                 phoneNumber: "99365590939")
+    
+    let contact_2 = ContactModel(name: "John",
+                                 surname: "Doe",
+                                 username: "johndoe",
+                                 email: "jphndoe@gmail.com",
+                                 phoneNumber: "99365123456")
+    
+    let contact_3 = ContactModel(name: "Steve",
+                                 surname: "Jobs",
+                                 username: "steve_apple",
+                                 email: "stevejobs@gmail.com",
+                                 phoneNumber: "99365123456")
+    
 }

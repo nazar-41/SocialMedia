@@ -15,6 +15,9 @@
 		A86B722828FEC500000DF147 /* E_layout2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722728FEC500000DF147 /* E_layout2.swift */; };
 		A86B722A28FEC7EF000DF147 /* E_layout3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722928FEC7EF000DF147 /* E_layout3.swift */; };
 		A86B722D28FEF0A0000DF147 /* ExploreImageContextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722C28FEF0A0000DF147 /* ExploreImageContextModifier.swift */; };
+		A878E6EA29000F2C0038B9ED /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878E6E929000F2C0038B9ED /* ContactsView.swift */; };
+		A878E6EC290012F60038B9ED /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878E6EB290012F60038B9ED /* ContactModel.swift */; };
+		A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878E6ED290018F60038B9ED /* ContactRowView.swift */; };
 		A882511828FEB429008C3407 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882511728FEB429008C3407 /* SearchBarView.swift */; };
 		A882511A28FEB468008C3407 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882511928FEB468008C3407 /* UIApplication.swift */; };
 		A882511D28FEB837008C3407 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A882511C28FEB837008C3407 /* SDWebImageSwiftUI */; };
@@ -29,6 +32,7 @@
 		A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */; };
 		A89F002628FD93800070B280 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002528FD93800070B280 /* PreviewProvider.swift */; };
 		A89F002828FD98190070B280 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002728FD98190070B280 /* UIImage.swift */; };
+		A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,9 @@
 		A86B722728FEC500000DF147 /* E_layout2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E_layout2.swift; sourceTree = "<group>"; };
 		A86B722928FEC7EF000DF147 /* E_layout3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E_layout3.swift; sourceTree = "<group>"; };
 		A86B722C28FEF0A0000DF147 /* ExploreImageContextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreImageContextModifier.swift; sourceTree = "<group>"; };
+		A878E6E929000F2C0038B9ED /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		A878E6EB290012F60038B9ED /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		A878E6ED290018F60038B9ED /* ContactRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowView.swift; sourceTree = "<group>"; };
 		A882511728FEB429008C3407 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A882511928FEB468008C3407 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		A882511F28FEBB50008C3407 /* E_layout1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E_layout1.swift; sourceTree = "<group>"; };
@@ -54,6 +61,7 @@
 		A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ExploreCardImageView.swift; sourceTree = "<group>"; };
 		A89F002528FD93800070B280 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		A89F002728FD98190070B280 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				A89F001128FD843E0070B280 /* ExploreCardModel.swift */,
+				A878E6EB290012F60038B9ED /* ContactModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +176,8 @@
 		A863120928FD662900CFA3EF /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A8E3CED8290021CA00ECB2E8 /* ViewModel */,
+				A8E3CED7290021C200ECB2E8 /* View */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -264,6 +275,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A8E3CED7290021C200ECB2E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A878E6E929000F2C0038B9ED /* ContactsView.swift */,
+				A878E6ED290018F60038B9ED /* ContactRowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A8E3CED8290021CA00ECB2E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,6 +371,7 @@
 				A89F001928FD86F60070B280 /* ExploreView.swift in Sources */,
 				A89F002628FD93800070B280 /* PreviewProvider.swift in Sources */,
 				A89F001028FD84180070B280 /* ExploreViewDataService.swift in Sources */,
+				A878E6EA29000F2C0038B9ED /* ContactsView.swift in Sources */,
 				A882511A28FEB468008C3407 /* UIApplication.swift in Sources */,
 				A89F002028FD90680070B280 /* ExploreCardImageView.swift in Sources */,
 				A86B722828FEC500000DF147 /* E_layout2.swift in Sources */,
@@ -350,10 +379,13 @@
 				A86311F828FD63A200CFA3EF /* ContentView.swift in Sources */,
 				A89F001528FD85650070B280 /* NetworkingManager.swift in Sources */,
 				A863120B28FD664200CFA3EF /* ProfileView.swift in Sources */,
+				A878E6EC290012F60038B9ED /* ContactModel.swift in Sources */,
 				A89F001B28FD87220070B280 /* ExploreViewImageService.swift in Sources */,
 				A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */,
 				A86B722D28FEF0A0000DF147 /* ExploreImageContextModifier.swift in Sources */,
+				A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */,
 				A882511828FEB429008C3407 /* SearchBarView.swift in Sources */,
+				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A882512028FEBB50008C3407 /* E_layout1.swift in Sources */,
 				A89F002828FD98190070B280 /* UIImage.swift in Sources */,

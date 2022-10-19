@@ -20,6 +20,7 @@ struct ContactsView: View {
             }
             
             SearchBarView(placeholderText: "elon", searchBarText: $vm_contactsView.searchBarText)
+                .padding(.bottom, 5)
             
             List{
                 HStack{
@@ -54,9 +55,18 @@ struct ContactsView: View {
                 
                 
                 ForEach(vm_contactsView.filteredContacts(startingArray: allContacts)) { contact in
-                    ContactRowView(contact: contact)
-                        .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
-                        .contentShape(Rectangle())
+                    NavigationLink {
+                        DirectChatView(contact: contact)
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        ContactRowView(contact: contact)
+          
+                    }
+                    .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
+                    .contentShape(Rectangle())
+
+                    
+  
                 }
                 
             }
@@ -69,6 +79,9 @@ struct ContactsView: View {
 
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsView(allContacts: [dev.contact_1, dev.contact_2, dev.contact_3])
+        NavigationView {
+            ContactsView(allContacts: [dev.contact_1, dev.contact_2, dev.contact_3])
+                .navigationBarHidden(true)
+        }
     }
 }

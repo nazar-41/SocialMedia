@@ -32,6 +32,8 @@
 		A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */; };
 		A89F002628FD93800070B280 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002528FD93800070B280 /* PreviewProvider.swift */; };
 		A89F002828FD98190070B280 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F002728FD98190070B280 /* UIImage.swift */; };
+		A8AD820E2900275300B1EB0F /* DirectChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD820D2900275300B1EB0F /* DirectChatView.swift */; };
+		A8AD821029002B4000B1EB0F /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD820F29002B4000B1EB0F /* ChatModel.swift */; };
 		A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		A89F002328FD92760070B280 /* VM_ExploreCardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ExploreCardImageView.swift; sourceTree = "<group>"; };
 		A89F002528FD93800070B280 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		A89F002728FD98190070B280 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		A8AD820D2900275300B1EB0F /* DirectChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectChatView.swift; sourceTree = "<group>"; };
+		A8AD820F29002B4000B1EB0F /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,7 @@
 		A86311F428FD63A200CFA3EF /* SocialMedia */ = {
 			isa = PBXGroup;
 			children = (
+				A8AD820A2900272C00B1EB0F /* DirectChatView */,
 				A86B722B28FEF089000DF147 /* Modifiers */,
 				A89F001328FD854E0070B280 /* Utilities */,
 				A89F000E28FD83E20070B280 /* Services */,
@@ -144,6 +149,7 @@
 			children = (
 				A89F001128FD843E0070B280 /* ExploreCardModel.swift */,
 				A878E6EB290012F60038B9ED /* ContactModel.swift */,
+				A8AD820F29002B4000B1EB0F /* ChatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +281,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A8AD820A2900272C00B1EB0F /* DirectChatView */ = {
+			isa = PBXGroup;
+			children = (
+				A8AD820C2900274200B1EB0F /* ViewModel */,
+				A8AD820B2900274000B1EB0F /* View */,
+			);
+			path = DirectChatView;
+			sourceTree = "<group>";
+		};
+		A8AD820B2900274000B1EB0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8AD820D2900275300B1EB0F /* DirectChatView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A8AD820C2900274200B1EB0F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A8E3CED7290021C200ECB2E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,12 +413,14 @@
 				A89F001B28FD87220070B280 /* ExploreViewImageService.swift in Sources */,
 				A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */,
 				A86B722D28FEF0A0000DF147 /* ExploreImageContextModifier.swift in Sources */,
+				A8AD821029002B4000B1EB0F /* ChatModel.swift in Sources */,
 				A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */,
 				A882511828FEB429008C3407 /* SearchBarView.swift in Sources */,
 				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A882512028FEBB50008C3407 /* E_layout1.swift in Sources */,
 				A89F002828FD98190070B280 /* UIImage.swift in Sources */,
+				A8AD820E2900275300B1EB0F /* DirectChatView.swift in Sources */,
 				A89F002228FD90B50070B280 /* VM_ExploreView.swift in Sources */,
 				A86B722A28FEC7EF000DF147 /* E_layout3.swift in Sources */,
 			);

@@ -26,8 +26,23 @@ struct ContactRowView: View {
             }
             
             Spacer()
+            
+            Image(systemName: "phone.arrow.up.right")
+                .foregroundColor(.blue)
+                .padding(10)
+                .onTapGesture { makePhoneCall(contact: contact) }
         }
         .padding(.vertical, 5)
+    }
+    
+    private func makePhoneCall(contact: ContactModel){
+        let telephone = "tel://"
+        let formattedString = telephone + contact.phoneNumber
+        guard let url = URL(string: formattedString) else {
+            print("error making phone call")
+            return
+        }
+        UIApplication.shared.open(url)
     }
 }
 

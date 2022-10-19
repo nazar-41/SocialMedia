@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    let contactArr = [DeveloperPreview.instance.contact_1,
+                      DeveloperPreview.instance.contact_2,
+                      DeveloperPreview.instance.contact_3]
     var body: some View {
         TabView{
             tabItemView(view: Text("chat view"), icon: "ellipsis.message")
@@ -16,7 +19,7 @@ struct ContentView: View {
             
             tabItemView(view: ProfileView(), icon: "person")
             
-            tabItemView(view: ContactsView(allContacts: [DeveloperPreview.instance.contact_1]), icon: "plus.square")
+            tabItemView(view: ContactsView(allContacts: contactArr), icon: "plus.square")
 
 
         }

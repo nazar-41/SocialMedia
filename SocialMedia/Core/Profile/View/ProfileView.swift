@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject private var vm_exploreView: VM_ExploreView
+    
     var body: some View {
         VStack{
             HStack(spacing: 10){
@@ -67,6 +69,22 @@ struct ProfileView: View {
                         .frame(height: 30)
                     }
                 }
+                
+                if !vm_exploreView.compositionalArray.isEmpty{
+                    VStack{
+                        ForEach(vm_exploreView.compositionalArray.shuffled().indices, id: \.self){index in
+                            E_layout2(exploreImage: vm_exploreView.compositionalArray[index])
+                        }
+                    }
+                    .padding(.top)
+                }else{
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .padding(.top, 200)
+                }
+                
+                
+                
             }
             
             
@@ -75,7 +93,7 @@ struct ProfileView: View {
             Spacer()
             
         }
-        .padding()
+        .padding(.horizontal)
        // .foregroundColor(.white)
         .accentColor(.black)
         
@@ -85,6 +103,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(VM_ExploreView())
     }
 }
 

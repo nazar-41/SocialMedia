@@ -84,7 +84,7 @@ struct ContactProfileView: View {
                 
                 if !vm_exploreView.compositionalArray.isEmpty{
                     VStack{
-                        ForEach(vm_exploreView.compositionalArray.indices, id: \.self){index in
+                        ForEach(vm_exploreView.compositionalArray.shuffled().indices, id: \.self){index in
                             E_layout2(exploreImage: vm_exploreView.compositionalArray[index])
                         }
                     }

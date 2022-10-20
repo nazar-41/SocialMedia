@@ -13,7 +13,7 @@ struct ContentView: View {
                       DeveloperPreview.instance.contact_3]
     var body: some View {
         TabView{
-            tabItemView(view: Text("chat view"), icon: "ellipsis.message")
+            tabItemView(view: ChatListView(), icon: "ellipsis.message")
             
             tabItemView(view: ExploreView(), icon: "magnifyingglass")
             

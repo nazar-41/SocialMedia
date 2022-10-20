@@ -89,6 +89,7 @@ struct DirectChatView: View {
                             .foregroundColor(.blue)
                             .padding(10)
                     }
+                    .disabled(message.isEmpty)
                 }
                 .padding(10)
 

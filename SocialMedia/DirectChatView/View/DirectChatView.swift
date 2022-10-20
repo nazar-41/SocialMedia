@@ -94,6 +94,7 @@ struct DirectChatView: View {
 
 
             }
+            .navigationBarHidden(true)
     }
     
     private func sendMessage(){

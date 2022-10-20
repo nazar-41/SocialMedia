@@ -11,6 +11,7 @@ struct ContactsView: View {
     let allContacts: [ContactModel]
     
     @StateObject private var vm_contactsView = VM_ContactsView()
+    @EnvironmentObject private var vm_exploreView: VM_ExploreView
     
     var body: some View {
         VStack{
@@ -56,9 +57,8 @@ struct ContactsView: View {
                 
                 ForEach(vm_contactsView.filteredContacts(startingArray: allContacts)) { contact in
                     NavigationLink {
-                        DirectChatView(contact: contact)
-//                            .navigationBarBackButtonHidden()
-                            .navigationBarHidden(true)
+                        ContactProfileView(contact: contact)
+                            .environmentObject(vm_exploreView)
                     } label: {
                         ContactRowView(contact: contact)
           
@@ -83,6 +83,7 @@ struct ContactsView_Previews: PreviewProvider {
         NavigationView {
             ContactsView(allContacts: [dev.contact_1, dev.contact_2, dev.contact_3])
                 .navigationBarHidden(true)
+                .environmentObject(VM_ExploreView())
         }
     }
 }

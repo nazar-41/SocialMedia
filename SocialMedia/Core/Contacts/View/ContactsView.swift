@@ -57,7 +57,8 @@ struct ContactsView: View {
                 ForEach(vm_contactsView.filteredContacts(startingArray: allContacts)) { contact in
                     NavigationLink {
                         DirectChatView(contact: contact)
-                            .navigationBarBackButtonHidden()
+//                            .navigationBarBackButtonHidden()
+                            .navigationBarHidden(true)
                     } label: {
                         ContactRowView(contact: contact)
           

@@ -15,80 +15,85 @@ struct DirectChatView: View {
     
     let contact: ContactModel
     var body: some View {
-        VStack{
-            HStack {
-                
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.black)
-                        .font(.headline)
-                        .padding()
-                }
-
-                Spacer()
-
-                
-                VStack{
-                    Circle()
-                        .frame(width: 40, height: 40)
+            VStack{
+                HStack {
                     
-                    Text("\(contact.name) \(contact.surname)")
-                        .font(.headline)
-                }
-                .padding(.trailing, 30)
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                            .padding()
+                    }
 
-                
-                Spacer()
+                    Spacer()
 
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.bottom, 10)
-            .background(.gray.opacity(0.1))
-            
-            ScrollView{
-                ForEach(chatArr){message in
-                    Text(message.message)
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(message.isUser ? .green : .blue)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: message.isUser ? .trailing : .leading)
+                    
+                    VStack{
+                        Circle()
+                            .frame(width: 40, height: 40)
                         
+                        Text("\(contact.name) \(contact.surname)")
+                            .font(.headline)
+                    }
+                    .padding(.trailing, 30)
+
+                    
+                    Spacer()
+
                 }
-            }
-            
-            HStack(spacing: 0){
-                ZStack{
-                    Color.blue.opacity(0.05)
-                        .cornerRadius(10)
-                    TextField("Message", text: $message)
-                        .ignoresSafeArea(.keyboard, edges: .bottom)
-                        .padding(.horizontal)
-                        .onSubmit {
-                            sendMessage()
-                        }
-                }
-                .frame(maxWidth: .infinity, maxHeight: 40)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 10)
+                .background(.gray.opacity(0.1))
                 
-                Button {
-                    //more code here
+                ScrollViewReader{proxy in
+                    ScrollView{
+                        ForEach(chatArr){message in
+                            Text(message.message)
+                                .foregroundColor(.white)
+                                .padding(10)
+                                .background(message.isUser ? .green : .blue)
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                                .frame(maxWidth: .infinity, alignment: message.isUser ? .trailing : .leading)
+                            
+                        }
+                    }
+                    .onChange(of: chatArr.count) { _ in
+                        scrollToLastMessage(proxy: proxy)
+                    }
                     
-                    sendMessage()
-                    
-
-                } label: {
-                    Image(systemName: "paperplane")
-                        .foregroundColor(.blue)
-                        .padding(10)
                 }
+                HStack(spacing: 0){
+                    ZStack{
+                        Color.blue.opacity(0.05)
+                            .cornerRadius(10)
+                        TextField("Message", text: $message)
+                            .ignoresSafeArea(.keyboard, edges: .bottom)
+                            .padding(.horizontal)
+                            .onSubmit {
+                                sendMessage()
+                            }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                    
+                    Button {
+                        //more code here
+                        
+                        sendMessage()
+                        
+
+                    } label: {
+                        Image(systemName: "paperplane")
+                            .foregroundColor(.blue)
+                            .padding(10)
+                    }
+                }
+                .padding(10)
+
+
             }
-            .padding(10)
-
-
-        }
     }
     
     private func sendMessage(){
@@ -103,6 +108,14 @@ struct DirectChatView: View {
 
         }
         
+    }
+    
+    private func scrollToLastMessage(proxy: ScrollViewProxy) {
+        if let lastMessage = chatArr.last { // 4
+            withAnimation(.easeOut(duration: 0.4)) {
+                proxy.scrollTo(lastMessage.id, anchor: .bottom) // 5
+            }
+        }
     }
 }
 

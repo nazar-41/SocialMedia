@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @StateObject private var vm_loginsignup = VM_LoginSignup()
+
     var body: some View {
         VStack{
             Spacer()
@@ -95,6 +97,9 @@ struct LoginView: View {
                 
                 Button {
                     // more code here
+                    
+                    vm_loginsignup.login(email: email, password: password)
+
                 } label: {
                     Text("Login")
                         .font(.headline)
@@ -116,6 +121,8 @@ struct LoginView: View {
                     
                     Button {
                         //more code here
+                        
+                        
                     } label: {
                         Text("Register")
                     }

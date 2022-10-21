@@ -26,7 +26,7 @@ struct SocialMediaApp: App {
 //                    .environmentObject(vm_exploreView)
 //            }
             
-            SignUpView()
+            LoginView()
         }
     }
 }

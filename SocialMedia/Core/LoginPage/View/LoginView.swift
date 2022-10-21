@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @Binding var isLoginPage: Bool
+    
     @StateObject private var vm_loginsignup = VM_LoginSignup()
 
     var body: some View {
@@ -122,6 +124,9 @@ struct LoginView: View {
                     Button {
                         //more code here
                         
+                        withAnimation {
+                            isLoginPage = false
+                        }
                         
                     } label: {
                         Text("Register")
@@ -143,6 +148,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isLoginPage: .constant(true))
     }
 }

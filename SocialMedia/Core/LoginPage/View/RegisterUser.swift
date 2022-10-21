@@ -1,37 +1,45 @@
 //
-//  SignUpView.swift
+//  RegisterUser.swift
 //  SocialMedia
 //
-//  Created by Belli's MacBook on 20/10/2022.
+//  Created by Belli's MacBook on 21/10/2022.
 //
 
 import SwiftUI
+import FirebaseAuth
 
-struct SignUpView: View {
+struct RegisterUser: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    @Binding var isLoginPage: Bool
-
+    @State private var isLoginPage: Bool = false
+    @State private var alertModel: AlertModel?
     
-    @StateObject private var vm_loginsignup = VM_LoginSignup()
+    @State private var isSuccess: Bool = false
+    
+    @AppStorage("loggedIn") private var loggedIn: Bool = false
+    
+    //@StateObject private var
     
     var body: some View {
         VStack{
+            NavigationLink(destination: ContentView(), isActive: $isSuccess){}
+                .hidden()
+            
             Spacer()
-
+            
             Image("asman_logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100, height: 100)
-                //.blur(radius: 7)
+            //.blur(radius: 7)
             
             
             VStack{
-
+                
                 
                 VStack{
-                    Text("Sign up")
+                    Text(isLoginPage ? "Login" : "Sign up")
                         .font(.headline)
                         .padding(.top)
                     
@@ -54,6 +62,7 @@ struct SignUpView: View {
                             )
                             .disableAutocorrection(true)
                             .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
                         
                         
                         
@@ -82,6 +91,8 @@ struct SignUpView: View {
                                 , alignment: .trailing
                             )
                             .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                        
                         
                         
                         
@@ -89,7 +100,7 @@ struct SignUpView: View {
                     .font(.subheadline)
                     .padding(.horizontal, 5)
                     .padding(.horizontal)
-
+                    
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 10)
@@ -99,10 +110,14 @@ struct SignUpView: View {
                 .padding()
                 
                 Button {
-                    // more code here
-                    vm_loginsignup.signup(email: email, password: password)
+                    if isLoginPage{
+                        login(email: email, password: password)
+                        
+                    }else{
+                        signup(email: email, password: password)
+                    }
                 } label: {
-                    Text("Register")
+                    Text(isLoginPage ? "Login" : "Register")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(10)
@@ -113,37 +128,93 @@ struct SignUpView: View {
                                 .shadow(color: .gray.opacity(0.2), radius: 10, x: 3, y: 3)
                         )
                         .padding(.horizontal)
-
+                    
                     
                 }
                 
                 HStack{
-                    Text("Already have an account?")
+                    Text(isLoginPage ? "Don't have an account?" : "Already have an account?")
                     
                     Button {
                         //more code here
                         withAnimation {
-                            isLoginPage = true
+                            email = ""
+                            password = ""
+                            isLoginPage.toggle()
+                            
                         }
                     } label: {
-                        Text("Login")
+                        Text(isLoginPage ? "Register" : "Login")
                     }
-
+                    
                 }
                 .font(.caption)
                 .padding(.top)
-
+                
             }
             
             Spacer()
             Spacer()
-
+            
+        }
+        .alert(item: $alertModel) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
+            
         }
     }
+    
+    func login(email: String, password: String){
+        guard !email.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
+            print("fill email and password correctly")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password){result, error in
+            guard error == nil else{
+                print("error logging in: \(error)")
+                alertModel = AlertModel(title: "Error", message: error!.localizedDescription)
+                return
+            }
+            if let result = result{
+                print("\nsuccessfully logged in: \(result.user.uid)")
+                loggedIn = true
+                isSuccess = true
+            }else{
+                print("returned nil from login result")
+            }
+        }
+    }
+    
+    func signup(email: String, password: String){
+        guard !email.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
+            print("fill email and password correctly")
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            guard error == nil else{
+                print("error signing up: \(error)")
+                
+                alertModel = AlertModel(title: "Error", message: error!.localizedDescription)
+                
+                return
+            }
+            
+            if let result = result{
+                print("\nsuccessfully signed up: \(result.user.uid)")
+                loggedIn = true
+                isSuccess = true
+            }else{
+                print("returned nil from sign up result")
+                
+            }
+        }
+    }
+    
 }
 
-struct SignUpView_Previews: PreviewProvider {
+struct RegisterUser_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(isLoginPage: .constant(false))
+        RegisterUser()
     }
 }

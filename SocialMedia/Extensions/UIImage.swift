@@ -11,6 +11,11 @@ import SwiftUI
 
 extension UIImage {
 
+    //MARK: get image size:
+    /*
+     Image
+        .getSizeIn(.gigabyte)
+     */
     public enum DataUnits: String {
         case byte, kilobyte, megabyte, gigabyte
     }
@@ -35,5 +40,21 @@ extension UIImage {
         }
 
         return String(format: "%.2f", size)
+    }
+    
+    
+    //MARK: get image resolution
+    var getWidth: CGFloat {
+        get {
+            let width = self.size.width
+            return width
+        }
+    }
+
+    var getHeight: CGFloat {
+        get {
+            let height = self.size.height
+            return height
+        }
     }
 }

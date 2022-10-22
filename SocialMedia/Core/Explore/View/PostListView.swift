@@ -29,7 +29,7 @@ struct PostListView: View {
             ScrollView{
                 VStack(spacing: 20){
                     ForEach(postArr) { model in
-                        PostItemView(model: model, image: Image("asman_logo"))
+                        PostItemView(model: model)
                     }
                 }
             }
@@ -39,6 +39,7 @@ struct PostListView: View {
 
 struct PostListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostListView(postArr: [dev.postCardModel, dev.postCardModel], startingPoint: dev.postCardModel)
+        PostListView(postArr: [dev.postCardModel_1, dev.postCardModel_2, dev.postCardModel_3],
+                     startingPoint: dev.postCardModel_1)
     }
 }

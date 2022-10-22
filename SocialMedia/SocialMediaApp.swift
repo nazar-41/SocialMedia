@@ -18,20 +18,22 @@ struct SocialMediaApp: App {
     
     @StateObject private var vm_exploreView = VM_ExploreView()
     @AppStorage("loggedIn") private var loggedIn: Bool = false
-    
+    let dev = DeveloperPreview.instance
     
     var body: some Scene {
         WindowGroup {
             NavigationView{
-                if loggedIn{
-                    ContentView()
-                        .navigationBarHidden(true)
-                        .environmentObject(vm_exploreView)
-                }else{
-                    RegisterUser()
-                        .navigationBarHidden(true)
-                        .environmentObject(vm_exploreView)
-                }
+//                if loggedIn{
+//                    ContentView()
+//                        .navigationBarHidden(true)
+//                        .environmentObject(vm_exploreView)
+//                }else{
+//                    RegisterUser()
+//                        .navigationBarHidden(true)
+//                        .environmentObject(vm_exploreView)
+//                }
+                
+                PostListView(postArr: [dev.postCardModel_1, dev.postCardModel_2, dev.postCardModel_3], startingPoint: dev.postCardModel_1)
             }
             
         }

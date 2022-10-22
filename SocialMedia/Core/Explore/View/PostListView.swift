@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct PostListView: View {
-    let postArr: [PostCardModel]
+    var postArr: [PostCardModel]
     let startingPoint: PostCardModel
+    
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         VStack{
             HStack(spacing: 0){
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .padding(10)
+                        .foregroundColor(.black)
+                }
+
+                
                 Image("asman_logo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -28,12 +39,25 @@ struct PostListView: View {
             
             ScrollView{
                 VStack(spacing: 20){
-                    ForEach(postArr) { model in
+                    ForEach(sortList()) { model in
                         PostItemView(model: model)
                     }
                 }
             }
         }
+        .navigationBarHidden(true)
+    }
+    
+    private func sortList()-> [PostCardModel]{
+        guard let startIndex = postArr.firstIndex(where: {$0.author == startingPoint.author}) else {
+            print("Errorroorororoororororooror")
+            return []
+        }
+        
+        let firstPart = postArr[startIndex..<postArr.count]
+        let seconPart = postArr[0..<startIndex]
+        
+        return Array(firstPart + seconPart)
     }
 }
 

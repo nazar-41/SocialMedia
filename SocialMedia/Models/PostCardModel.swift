@@ -8,10 +8,10 @@
 import Foundation
 
 
-struct PostCardModel: Identifiable{
+struct PostCardModel: Identifiable, Equatable{
     var id = UUID().uuidString
     
     let author: ExploreCardModel
-    var isLiked: Bool
+    var isLiked: Bool = false
     //let comments: [String]
 }

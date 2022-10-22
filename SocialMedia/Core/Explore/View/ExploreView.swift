@@ -22,7 +22,7 @@ struct ExploreView: View {
                     VStack(spacing: 4){
                         ForEach(vm_exploreView.compositionalArray.indices, id: \.self) { index in
                             if index == 0 || index % 6 == 0 {
-                                E_layout1(exploreImage: vm_exploreView.compositionalArray[index])
+                                E_layout1(exploreImage: vm_exploreView.compositionalArray[index], allExploreData: postCardModel(exploreData: vm_exploreView.exploreDataArray))
                             } else if index % 3 == 0 {
                                 E_layout3(exploreImage: vm_exploreView.compositionalArray[index])
                             } else {
@@ -38,6 +38,22 @@ struct ExploreView: View {
             }
         }
         .padding(.bottom, 1)
+    }
+    
+    private func postCardModel(exploreData: [ExploreCardModel]) -> [PostCardModel]{
+        var arr: [PostCardModel] = []
+      //  let start = PostCardModel(author: startPoint)
+        
+        for i in exploreData{
+            let new = PostCardModel(author: i, isLiked: false)
+            arr.append(new)
+        }
+        
+        
+        
+     //   let fromStartToFinish = exploreData[startPoint...]
+        
+        return arr
     }
 }
 

@@ -49,4 +49,11 @@ class DeveloperPreview{
                                  email: "stevejobs@gmail.com",
                                  phoneNumber: "99365123456")
     
+    
+    var postCardModel: PostCardModel{
+        let author = ExploreCardModel(id: "123", author: "Daniel Ebersole", downloadURL: "https://picsum.photos/id/1070/5472/3648")
+        
+        return PostCardModel(author: author, isLiked: false)
+    }
+    
 }

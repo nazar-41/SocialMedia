@@ -49,7 +49,7 @@ struct PostListView: View {
     }
     
     private func sortList()-> [PostCardModel]{
-        guard let startIndex = postArr.firstIndex(where: {$0.author == startingPoint.author}) else {
+        guard let startIndex = postArr.firstIndex(where: {$0 == startingPoint}) else {
             print("Errorroorororoororororooror")
             return []
         }

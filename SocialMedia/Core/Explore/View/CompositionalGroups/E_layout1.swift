@@ -22,7 +22,7 @@ struct E_layout1: View {
         HStack(spacing: 4) {
             
             NavigationLink {
-                PostListView(postArr: allExploreData, startingPoint: PostCardModel(author: exploreImage[0], isLiked: false))
+                PostListView(postArr: allExploreData, startingPoint: allExploreData[0])
             } label: {
                 AnimatedImage(url: URL(string: exploreImage[0].downloadURL))
                     .resizable()
@@ -38,7 +38,7 @@ struct E_layout1: View {
                 if exploreImage.count >= 2 {
                     
                     NavigationLink {
-                        PostListView(postArr: allExploreData, startingPoint: PostCardModel(author: exploreImage[1], isLiked: false))
+                        PostListView(postArr: allExploreData, startingPoint: allExploreData[1])
 
                     } label: {
                         AnimatedImage(url: URL(string: exploreImage[1].downloadURL))
@@ -55,7 +55,7 @@ struct E_layout1: View {
                 if exploreImage.count == 3 {
                     NavigationLink {
                         PostListView(postArr: allExploreData,
-                                     startingPoint: PostCardModel(author: exploreImage[2], isLiked: false))
+                                     startingPoint: allExploreData[2])
                         
                     } label: {
                         AnimatedImage(url: URL(string: exploreImage[2].downloadURL))

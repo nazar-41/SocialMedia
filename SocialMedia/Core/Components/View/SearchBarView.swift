@@ -17,11 +17,11 @@ struct SearchBarView: View {
             Image(systemName: "magnifyingglass")
             
             TextField(placeholderText, text: $searchBarText)
-                .padding(7)
+                .padding(10)
                 .padding(.trailing, 10)
                 .overlay(
                     Image(systemName: "xmark")
-                        .padding(5)
+                        .padding(10)
                         .opacity(searchBarText.isEmpty ? 0 : 1)
                         .onTapGesture {
                             UIApplication.shared.endEditing()

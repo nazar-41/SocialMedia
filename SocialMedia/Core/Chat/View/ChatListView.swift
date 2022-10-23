@@ -12,6 +12,8 @@ struct ChatListView: View {
                        DeveloperPreview.instance.contact_2,
                        DeveloperPreview.instance.contact_3]
     
+    @StateObject private var vm_chatListView = VM_ChatListView()
+    
     var body: some View {
         VStack{
             ZStack(alignment: .top){
@@ -22,9 +24,12 @@ struct ChatListView: View {
                     .font(.headline)
             }
             .frame(height: 30)
+            
+            SearchBarView(placeholderText: "elon", searchBarText: $vm_chatListView.searchBarText)
+                .padding(.top, 10)
 
             List{
-                ForEach(chatListArr) { contact in
+                ForEach(vm_chatListView.filteredContacts(startingArray: chatListArr)) { contact in
                     NavigationLink{
                         DirectChatView(contact: contact)
                     }label: {
@@ -37,6 +42,8 @@ struct ChatListView: View {
             .listStyle(.plain)
         }
     }
+    
+
 }
 
 struct ChatListView_Previews: PreviewProvider {

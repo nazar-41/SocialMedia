@@ -32,10 +32,7 @@ struct SocialMediaApp: App {
                         .navigationBarHidden(true)
                         .environmentObject(vm_exploreView)
                 }
-                
-                //PostListView(postArr: [dev.postCardModel_1, dev.postCardModel_2, dev.postCardModel_3], startingPoint: dev.postCardModel_1)
             }
-            
         }
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
     
+    @State private var showSharePostSheet: Bool = false
+    
     var body: some View {
         VStack{
             HStack(spacing: 10){
@@ -32,6 +34,7 @@ struct ProfileView: View {
                 
                 Button {
                     //more code here
+                    showSharePostSheet.toggle()
                 } label: {
                     Image(systemName: "plus.square")
                         .font(.system(size: 19, weight: .semibold))
@@ -72,7 +75,7 @@ struct ProfileView: View {
                 
                 if !vm_exploreView.compositionalArray.isEmpty{
                     VStack{
-                        ForEach(vm_exploreView.compositionalArray.shuffled().indices, id: \.self){index in
+                        ForEach(vm_exploreView.compositionalArray[0...1].indices, id: \.self){index in
                             E_layout2(exploreImage: vm_exploreView.compositionalArray[index], allPosts: [])
                         }
                     }
@@ -96,6 +99,9 @@ struct ProfileView: View {
         .padding(.horizontal)
        // .foregroundColor(.white)
         .accentColor(.black)
+        .fullScreenCover(isPresented: $showSharePostSheet) {
+            CreatePostView()
+        }
         
     }
 }

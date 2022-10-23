@@ -85,7 +85,7 @@ struct ContactProfileView: View {
                 if !vm_exploreView.compositionalArray.isEmpty{
                     VStack{
                         ForEach(vm_exploreView.compositionalArray.shuffled().indices, id: \.self){index in
-                            E_layout2(exploreImage: vm_exploreView.compositionalArray[index])
+                            E_layout2(exploreImage: vm_exploreView.compositionalArray[index], allPosts: [])
                         }
                     }
                     .padding(.top)

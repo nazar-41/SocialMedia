@@ -22,11 +22,11 @@ struct ExploreView: View {
                     VStack(spacing: 4){
                         ForEach(vm_exploreView.compositionalArray.indices, id: \.self) { index in
                             if index == 0 || index % 6 == 0 {
-                                E_layout1(exploreImage: vm_exploreView.compositionalArray[index], allExploreData: postCardModel(exploreData: vm_exploreView.exploreDataArray))
+                                E_layout1(exploreImage: vm_exploreView.compositionalArray[index], allPosts: vm_exploreView.exploreDataArray)
                             } else if index % 3 == 0 {
-                                E_layout3(exploreImage: vm_exploreView.compositionalArray[index])
+                                E_layout3(exploreImage: vm_exploreView.compositionalArray[index], allPosts: vm_exploreView.exploreDataArray)
                             } else {
-                                E_layout2(exploreImage: vm_exploreView.compositionalArray[index])
+                                E_layout2(exploreImage: vm_exploreView.compositionalArray[index], allPosts: vm_exploreView.exploreDataArray)
                             }
                         }
                     }
@@ -40,21 +40,21 @@ struct ExploreView: View {
         .padding(.bottom, 1)
     }
     
-    private func postCardModel(exploreData: [ExploreCardModel]) -> [PostCardModel]{
-        var arr: [PostCardModel] = []
-      //  let start = PostCardModel(author: startPoint)
-        
-        for i in exploreData{
-            let new = PostCardModel(author: i, isLiked: false)
-            arr.append(new)
-        }
-        
-        
-        
-     //   let fromStartToFinish = exploreData[startPoint...]
-        
-        return arr
-    }
+//    private func postCardModel(exploreData: [ExploreCardModel]) -> [ExploreCardModel]{
+//        var arr: [ExploreCardModel] = []
+//      //  let start = PostCardModel(author: startPoint)
+//
+//        for i in exploreData{
+//            let new = PostCardModel(author: i, isLiked: false)
+//            arr.append(new)
+//        }
+//
+//
+//
+//     //   let fromStartToFinish = exploreData[startPoint...]
+//
+//        return arr
+//    }
 }
 
 struct ExploreView_Previews: PreviewProvider {

@@ -12,8 +12,8 @@ import SDWebImageSwiftUI
 
 struct E_layout1: View {
     let exploreImage: [ExploreCardModel]
+    let allPosts: [ExploreCardModel]
     
-    let allExploreData: [PostCardModel]
     
     // width, padding: 30
     let width = UIScreen.main.bounds.width - 30
@@ -22,7 +22,8 @@ struct E_layout1: View {
         HStack(spacing: 4) {
             
             NavigationLink {
-                PostListView(postArr: allExploreData, startingPoint: allExploreData[0])
+            //    PostListView(postArr: allExploreData, startingPoint: allExploreData[0])
+                PostListView(exploreArr: allPosts, startingPoint: exploreImage[0])
             } label: {
                 AnimatedImage(url: URL(string: exploreImage[0].downloadURL))
                     .resizable()
@@ -38,7 +39,8 @@ struct E_layout1: View {
                 if exploreImage.count >= 2 {
                     
                     NavigationLink {
-                        PostListView(postArr: allExploreData, startingPoint: allExploreData[1])
+                      //  PostListView(postArr: allExploreData, startingPoint: allExploreData[1])
+                        PostListView(exploreArr: allPosts, startingPoint: exploreImage[1])
 
                     } label: {
                         AnimatedImage(url: URL(string: exploreImage[1].downloadURL))
@@ -54,8 +56,9 @@ struct E_layout1: View {
 
                 if exploreImage.count == 3 {
                     NavigationLink {
-                        PostListView(postArr: allExploreData,
-                                     startingPoint: allExploreData[2])
+                      //  PostListView(postArr: allExploreData, startingPoint: allExploreData[2])
+                        PostListView(exploreArr: allPosts, startingPoint: exploreImage[2])
+
                         
                     } label: {
                         AnimatedImage(url: URL(string: exploreImage[2].downloadURL))
@@ -79,6 +82,6 @@ struct E_layout1: View {
 struct E_layout1_Previews: PreviewProvider {
     static var previews: some View {
         E_layout1(exploreImage: [dev.exploreCardModel_1, dev.exploreCardModel_2, dev.exploreCardModel_3],
-                  allExploreData: [dev.postCardModel_1])
+                  allPosts:  [dev.exploreCardModel_1, dev.exploreCardModel_2, dev.exploreCardModel_3])
     }
 }

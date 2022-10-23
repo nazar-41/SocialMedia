@@ -50,29 +50,29 @@ class DeveloperPreview{
                                  phoneNumber: "99365123456")
     
     
-    var postCardModel_1: PostCardModel{
-        let author = ExploreCardModel(id: "117",
-                                      author: "Daniel Ebersole",
-                                      downloadURL: "https://picsum.photos/id/117/1544/1024")
-        
-        return PostCardModel(author: author, isLiked: false)
-    }
-    
-    var postCardModel_2: PostCardModel{
-        let author = ExploreCardModel(id: "117",
-                                      author: "Daniel Ebersole",
-                                      downloadURL: "https://picsum.photos/id/1084/4579/3271")
-        
-        return PostCardModel(author: author, isLiked: false)
-    }
-    
-    var postCardModel_3: PostCardModel{
-        let author = ExploreCardModel(id: "117",
-                                      author: "Daniel Ebersole",
-                                      downloadURL: "https://picsum.photos/id/1070/5472/3648")
-        
-        return PostCardModel(author: author, isLiked: false)
-    }
+//    var postCardModel_1: PostCardModel{
+//        let author = ExploreCardModel(id: "117",
+//                                      author: "Daniel Ebersole",
+//                                      downloadURL: "https://picsum.photos/id/117/1544/1024")
+//
+//        return PostCardModel(author: author, isLiked: false)
+//    }
+//
+//    var postCardModel_2: PostCardModel{
+//        let author = ExploreCardModel(id: "117",
+//                                      author: "Daniel Ebersole",
+//                                      downloadURL: "https://picsum.photos/id/1084/4579/3271")
+//
+//        return PostCardModel(author: author, isLiked: false)
+//    }
+//
+//    var postCardModel_3: PostCardModel{
+//        let author = ExploreCardModel(id: "117",
+//                                      author: "Daniel Ebersole",
+//                                      downloadURL: "https://picsum.photos/id/1070/5472/3648")
+//
+//        return PostCardModel(author: author, isLiked: false)
+//    }
     
     
 }

@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 
 struct PostItemView: View {
-    @State var model: PostCardModel
+    @State var model: ExploreCardModel
     //var image: Image
     
     var body: some View {
@@ -19,7 +19,7 @@ struct PostItemView: View {
                     Circle()
                         .frame(width: 30)
                     
-                    Text(model.author.author)
+                    Text(model.author)
                         .font(.system(size: 14, weight: .medium))
                     
                     Spacer()
@@ -28,7 +28,7 @@ struct PostItemView: View {
                 }
                 .padding(.horizontal)
                 
-                WebImage(url: URL(string: model.author.downloadURL))
+                WebImage(url: URL(string: model.downloadURL))
                     .resizable()
                     .placeholder {
                         Rectangle().foregroundColor(.gray.opacity(0.5))
@@ -88,7 +88,7 @@ struct PostItemView: View {
 
 struct PostItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PostItemView(model: dev.postCardModel_2)
+        PostItemView(model: dev.exploreCardModel_1)
             .previewLayout(.sizeThatFits)
     }
 }

@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct PostListView: View {
-    var postArr: [PostCardModel]
-    let startingPoint: PostCardModel
+    //var postArr: [PostCardModel]
+    //let startingPoint: PostCardModel
+    
+    var exploreArr: [ExploreCardModel]
+    let startingPoint: ExploreCardModel
     
     @Environment(\.presentationMode) private var presentationMode
     
@@ -48,14 +51,20 @@ struct PostListView: View {
         .navigationBarHidden(true)
     }
     
-    private func sortList()-> [PostCardModel]{
-        guard let startIndex = postArr.firstIndex(where: {$0 == startingPoint}) else {
+    private func sortList()-> [ExploreCardModel]{
+        guard let startIndex = exploreArr.firstIndex(where: {$0 == startingPoint}) else {
             print("Errorroorororoororororooror")
             return []
         }
         
-        let firstPart = postArr[startIndex..<postArr.count]
-        let seconPart = postArr[0..<startIndex]
+        let firstPart = exploreArr[startIndex..<exploreArr.count]
+        let seconPart = exploreArr[0..<startIndex]
+        
+//        print("\n")
+//        print("startIndex: \(startIndex), first part: \(firstPart)")
+//        print("endIndex: \(exploreArr.count) first part: \(seconPart)")
+//        print("\n")
+
         
         return Array(firstPart + seconPart)
     }
@@ -63,7 +72,7 @@ struct PostListView: View {
 
 struct PostListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostListView(postArr: [dev.postCardModel_1, dev.postCardModel_2, dev.postCardModel_3],
-                     startingPoint: dev.postCardModel_1)
+        PostListView(exploreArr: [dev.exploreCardModel_1, dev.exploreCardModel_2, dev.exploreCardModel_3],
+                     startingPoint: dev.exploreCardModel_1)
     }
 }

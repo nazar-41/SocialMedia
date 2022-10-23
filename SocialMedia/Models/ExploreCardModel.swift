@@ -17,6 +17,9 @@ struct ExploreCardModel: Identifiable, Codable, Hashable{
         case id, author
         case downloadURL = "download_url"
     }
+    
+    var isLiked: Bool = false
+
 }
 
 

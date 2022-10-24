@@ -27,6 +27,9 @@
 		A882511A28FEB468008C3407 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882511928FEB468008C3407 /* UIApplication.swift */; };
 		A882511D28FEB837008C3407 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A882511C28FEB837008C3407 /* SDWebImageSwiftUI */; };
 		A882512028FEBB50008C3407 /* E_layout1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882511F28FEBB50008C3407 /* E_layout1.swift */; };
+		A884DE232906B8820019DDA4 /* CreateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884DE222906B8820019DDA4 /* CreateProfile.swift */; };
+		A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884DE242906B9D70019DDA4 /* ImagePicker.swift */; };
+		A884DE282906BF4F0019DDA4 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = A884DE272906BF4F0019DDA4 /* iPhoneNumberField */; };
 		A893DB5D2903F63600266EE8 /* PostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893DB5C2903F63600266EE8 /* PostListView.swift */; };
 		A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893DB5E2903F64F00266EE8 /* PostItemView.swift */; };
 		A893DB612903FBE500266EE8 /* PostCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893DB602903FBE500266EE8 /* PostCardModel.swift */; };
@@ -79,6 +82,8 @@
 		A882511728FEB429008C3407 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A882511928FEB468008C3407 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		A882511F28FEBB50008C3407 /* E_layout1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E_layout1.swift; sourceTree = "<group>"; };
+		A884DE222906B8820019DDA4 /* CreateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile.swift; sourceTree = "<group>"; };
+		A884DE242906B9D70019DDA4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A893DB5C2903F63600266EE8 /* PostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListView.swift; sourceTree = "<group>"; };
 		A893DB5E2903F64F00266EE8 /* PostItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItemView.swift; sourceTree = "<group>"; };
 		A893DB602903FBE500266EE8 /* PostCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardModel.swift; sourceTree = "<group>"; };
@@ -115,6 +120,7 @@
 				A882511D28FEB837008C3407 /* SDWebImageSwiftUI in Frameworks */,
 				A8AE6D4A2902B6E6000E16AC /* FirebaseStorage in Frameworks */,
 				A8AE6D482902B6E6000E16AC /* FirebaseAuthCombine-Community in Frameworks */,
+				A884DE282906BF4F0019DDA4 /* iPhoneNumberField in Frameworks */,
 				A8AE6D462902B6E6000E16AC /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +301,7 @@
 				A8724040290181BF00E58E4B /* LoginView.swift */,
 				A8724042290181D100E58E4B /* SignUpView.swift */,
 				A8AE6D4F2902BE5C000E16AC /* RegisterUser.swift */,
+				A884DE222906B8820019DDA4 /* CreateProfile.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				A89F001428FD85650070B280 /* NetworkingManager.swift */,
+				A884DE242906B9D70019DDA4 /* ImagePicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -475,6 +483,7 @@
 				A8AE6D452902B6E6000E16AC /* FirebaseAuth */,
 				A8AE6D472902B6E6000E16AC /* FirebaseAuthCombine-Community */,
 				A8AE6D492902B6E6000E16AC /* FirebaseStorage */,
+				A884DE272906BF4F0019DDA4 /* iPhoneNumberField */,
 			);
 			productName = SocialMedia;
 			productReference = A86311F228FD63A200CFA3EF /* SocialMedia.app */;
@@ -507,6 +516,7 @@
 			packageReferences = (
 				A882511B28FEB837008C3407 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				A8AE6D442902B6E6000E16AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A884DE262906BF4F0019DDA4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = A86311F328FD63A200CFA3EF /* Products */;
 			projectDirPath = "";
@@ -541,6 +551,7 @@
 				A8FFEFE029057582007B5149 /* CreatePostView.swift in Sources */,
 				A89F001028FD84180070B280 /* ExploreViewDataService.swift in Sources */,
 				A878E6EA29000F2C0038B9ED /* ContactsView.swift in Sources */,
+				A884DE232906B8820019DDA4 /* CreateProfile.swift in Sources */,
 				A882511A28FEB468008C3407 /* UIApplication.swift in Sources */,
 				A89F002028FD90680070B280 /* ExploreCardImageView.swift in Sources */,
 				A86B722828FEC500000DF147 /* E_layout2.swift in Sources */,
@@ -565,6 +576,7 @@
 				A882511828FEB429008C3407 /* SearchBarView.swift in Sources */,
 				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
+				A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */,
 				A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */,
 				A882512028FEBB50008C3407 /* E_layout1.swift in Sources */,
 				A8724041290181BF00E58E4B /* LoginView.swift in Sources */,
@@ -789,6 +801,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A884DE262906BF4F0019DDA4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A8AE6D442902B6E6000E16AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -804,6 +824,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A882511B28FEB837008C3407 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		A884DE272906BF4F0019DDA4 /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A884DE262906BF4F0019DDA4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 		A8AE6D452902B6E6000E16AC /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

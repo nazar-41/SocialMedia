@@ -17,6 +17,8 @@ struct RegisterUser: View {
     
     @State private var isSuccess: Bool = false
     
+    @State private var showCreateProfileSheet: Bool = false
+    
     @AppStorage("loggedIn") private var loggedIn: Bool = false
     
     //@StateObject private var
@@ -157,6 +159,9 @@ struct RegisterUser: View {
             Spacer()
             
         }
+        .fullScreenCover(isPresented: $showCreateProfileSheet){
+            CreateProfile()
+        }
         .alert(item: $alertModel) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
             
@@ -171,7 +176,7 @@ struct RegisterUser: View {
         
         Auth.auth().signIn(withEmail: email, password: password){result, error in
             guard error == nil else{
-                print("error logging in: \(error)")
+                print("error logging in: \(String(describing: error))")
                 alertModel = AlertModel(title: "Error", message: error!.localizedDescription)
                 return
             }
@@ -203,7 +208,9 @@ struct RegisterUser: View {
             if let result = result{
                 print("\nsuccessfully signed up: \(result.user.uid)")
                 loggedIn = true
-                isSuccess = true
+                showCreateProfileSheet = true
+                
+                //isSuccess = true
             }else{
                 print("returned nil from sign up result")
                 

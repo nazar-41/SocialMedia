@@ -10,6 +10,11 @@ import iPhoneNumberField
 
 struct CreateProfile: View {
     @Environment(\.presentationMode) private var presentationMode
+    
+    @StateObject private var vm_createProfile = VM_CreateProfile()
+    @State private var isSuccess: Bool = false
+    
+    
     @State private var image: Image? = nil
     
     @State private var showImagePicker: Bool = false
@@ -21,6 +26,23 @@ struct CreateProfile: View {
     var body: some View {
         NavigationView{
             VStack{
+                NavigationLink("", destination: ContentView().navigationBarHidden(true), isActive: $vm_createProfile.isSuccess)
+                    .hidden()
+                HStack{
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .padding(10)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                    }
+                    
+                    
+                    
+                    Spacer()
+                }
+                
                 Button {
                     //more code here
                     withAnimation {
@@ -33,7 +55,7 @@ struct CreateProfile: View {
                             .scaledToFit()
                             .frame(width: 150)
                             .clipShape(Circle())
-                            
+                        
                     }else{
                         Image(systemName: "person.crop.circle.fill")
                             .resizable()
@@ -46,21 +68,21 @@ struct CreateProfile: View {
                 .padding(.top)
                 
                 VStack(spacing: 20){
-
+                    
                     listItem(title: "Name", placeholder: "john", bindedTo: $name)
                     listItem(title: "Surname", placeholder: "Doe", bindedTo: $surname)
                     listItem(title: "Username", placeholder: "@johndoe", bindedTo: $userName)
-
+                    
                     HStack{
                         Text("Mobile: ")
                             .frame(width: 100, alignment: .leading)
-
+                        
                         iPhoneNumberField("(000) 000-0000", text: $phoneNumber)
                             .flagHidden(false)
                             .flagSelectable(true)
                             .prefixHidden(true)
                             .padding(5)
-                           // .underline()
+                        // .underline()
                     }
                     .overlay(Rectangle().stroke(.gray.opacity(0.4)).frame(height: 0.3), alignment: .bottom)
                     .font(.headline)
@@ -68,6 +90,16 @@ struct CreateProfile: View {
                     Button {
                         //more code here
                         //save userData to firebase
+                        let contact = ContactModel(id: UUID().uuidString,
+                                                   name: name,
+                                                   surname: surname,
+                                                   username: userName,
+                                                   email: "n/a",
+                                                   phoneNumber: phoneNumber,
+                                                   createdDate: "\(Date.now)")
+                        
+                        vm_createProfile.registerUser(user: contact)
+                        
                     } label: {
                         Text("Start")
                             .frame(maxWidth: UIScreen.main.bounds.width * 0.7, maxHeight: 40)
@@ -77,7 +109,7 @@ struct CreateProfile: View {
                         
                     }
                     .padding(.top)
-
+                    
                     
                     
                     
@@ -87,12 +119,12 @@ struct CreateProfile: View {
                 Spacer()
                 
                 
-
+                
                 
             }
             .padding(.horizontal)
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
+            //            .navigationTitle("Profile")
+            //            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: $image)
             }
@@ -101,6 +133,7 @@ struct CreateProfile: View {
                     .resizable()
                     .scaledToFit()
                     .blur(radius: 15)
+                
                 
             }
         }
@@ -122,7 +155,7 @@ extension CreateProfile{
                 .frame(width: 100, alignment: .leading)
             TextField(placeholder, text: bindedTo)
                 .padding(5)
-               // .underline()
+            // .underline()
         }
         .overlay(Rectangle().stroke(.gray.opacity(0.4)).frame(height: 0.3), alignment: .bottom)
         .font(.headline)

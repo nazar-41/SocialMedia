@@ -35,9 +35,6 @@ struct SocialMediaApp: App {
                         .environmentObject(vm_exploreView)
                 }
             }
-            .onAppear{
-                firebaseManager.fetchData()
-            }
         }
     }
 }

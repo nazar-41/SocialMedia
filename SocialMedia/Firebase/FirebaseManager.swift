@@ -12,14 +12,13 @@ import FirebaseFirestore
 class FirebaseManager: ObservableObject{
     
     @Published var users: [ContactModel] = []
+    @Published var addSuccess: Bool = false
     
-    let database = Firestore.firestore()
+    private let database = Firestore.firestore()
     
-//    init(){
-////        fetchData()
-//        self.fetchData()
-////        self.addData()
-//    }
+    init(){
+        fetchData()
+    }
     
     func fetchData(){
         database.collection("users_list").getDocuments() { snapshot, error in
@@ -36,47 +35,18 @@ class FirebaseManager: ObservableObject{
                 return
             }
             
-//            for document in snapshot.documents{
-//                print("\(document.documentID) => \(document.data())")
-//            }
-            
             //MARK: update list on the main thread
             DispatchQueue.main.async {
-//                self.users = snapshot.documents.map { document in
-////                    return ContactModel(id: document.documentID,
-////                                        name: self.unwrappedValue(document: document, fieldName: "name"),
-////                                        surname: self.unwrappedValue(document: document, fieldName: "surname"),
-////                                        username: self.unwrappedValue(document: document, fieldName: "username"),
-////                                        email: self.unwrappedValue(document: document, fieldName: "email"),
-////                                        phoneNumber: self.unwrappedValue(document: document, fieldName: "mobile"),
-////                                        createdDate: self.unwrappedValue(document: document, fieldName: "created_date"))
-//                    return ContactModel(id: document.documentID,
-//                                        name: document["name"] as? String ?? "-",
-//                                        surname: document["surname"] as? String ?? "-",
-//                                        username: document["username"] as? String ?? "-",
-//                                        email: document["email"] as? String ?? "-",
-//                                        phoneNumber: document["mobile"] as? String ?? "-",
-//                                        createdDate: document["created_date"] as? String ?? "-")
-//                }
-//
-                for document in snapshot.documents{
-                    var newDocument = ContactModel(id: document.documentID,
-                                                   name: document["name"] as? String ?? "-",
-                                                   surname: document["surname"] as? String ?? "",
-                                                   username: document["username"] as? String ?? "",
-                                                   email: document["email"] as? String ?? "",
-                                                   phoneNumber: document["mobile"] as? String ?? "",
-                                                   createdDate: document["created_date"] as? String ?? "")
-                    
-                  //  print(newDocument)
-                    self.users.append(newDocument)
+                self.users = snapshot.documents.map { document in
+                    return ContactModel(id: document.documentID,
+                                        name: self.unwrappedValue(document: document, fieldName: "name"),
+                                        surname: self.unwrappedValue(document: document, fieldName: "surname"),
+                                        username: self.unwrappedValue(document: document, fieldName: "username"),
+                                        email: self.unwrappedValue(document: document, fieldName: "email"),
+                                        phoneNumber: self.unwrappedValue(document: document, fieldName: "mobile"),
+                                        createdDate: self.unwrappedValue(document: document, fieldName: "created_date"))
                 }
-                
-                print("got list like: \(self.users)")
-                
             }
-            
-
         }
     }
     
@@ -86,24 +56,24 @@ class FirebaseManager: ObservableObject{
     
     
     
-    private func addData(){
-        let data: [String: Any] = ["name" : "Maksat",
-                                   "surname" : "Meredow",
-                                   "username" : "max41",
-                                   "email" : "mafw",
-                                   "mobile" : "fdfdf",
-                                   "created_date" : "yesterday"
-        
+    func addUser(user: ContactModel){
+        let data: [String: Any] = ["name" : user.name,
+                                   "surname" : user.surname,
+                                   "username" : user.username,
+                                   "email" : user.email,
+                                   "mobile" : user.phoneNumber,
+                                   "created_date" : user.createdDate
+                                   
         ]
         
         database.collection(Constants.fb_userslist).addDocument(data: data) { error in
             guard error == nil else{
-                print("error adding data: \(error)")
-                self.fetchData()
+                print("error adding data: \(String(describing: error))")
                 return
             }
             
             self.fetchData()
+            self.addSuccess = true
         }
     }
 }

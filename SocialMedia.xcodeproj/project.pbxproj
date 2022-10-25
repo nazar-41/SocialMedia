@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A85FF4772907F1EE00B7C938 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A85FF4762907F1EE00B7C938 /* FirebaseFirestore */; };
 		A85FF4792907F50E00B7C938 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85FF4782907F50E00B7C938 /* Constants.swift */; };
+		A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85FF47A2908183C00B7C938 /* VM_CreateProfile.swift */; };
 		A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86311F528FD63A200CFA3EF /* SocialMediaApp.swift */; };
 		A86311F828FD63A200CFA3EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86311F728FD63A200CFA3EF /* ContentView.swift */; };
 		A86311FA28FD63A500CFA3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A86311F928FD63A500CFA3EF /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		A85FF4782907F50E00B7C938 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A85FF47A2908183C00B7C938 /* VM_CreateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_CreateProfile.swift; sourceTree = "<group>"; };
 		A86311F228FD63A200CFA3EF /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A86311F528FD63A200CFA3EF /* SocialMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaApp.swift; sourceTree = "<group>"; };
 		A86311F728FD63A200CFA3EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				A8AE6D4B2902B778000E16AC /* VM_LoginSignup.swift */,
+				A85FF47A2908183C00B7C938 /* VM_CreateProfile.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */,
 				A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */,
+				A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */,
 				A882512028FEBB50008C3407 /* E_layout1.swift in Sources */,
 				A8724041290181BF00E58E4B /* LoginView.swift in Sources */,
 				A872403C290165A800E58E4B /* ChatListView.swift in Sources */,

@@ -8,12 +8,13 @@
 import SwiftUI
 
 
-struct ContactModel: Identifiable, Codable{
-    var id = UUID().uuidString
+struct ContactModel: Identifiable, Codable, Hashable{
+    let id: String
     let name: String
     let surname: String
     let username: String
     let email: String
     let phoneNumber: String
+    let createdDate: String
   //  let photo: UIImage
 }

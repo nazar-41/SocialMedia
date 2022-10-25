@@ -17,6 +17,8 @@ struct SocialMediaApp: App {
     
     
     @StateObject private var vm_exploreView = VM_ExploreView()
+    @StateObject private var firebaseManager = FirebaseManager()
+    
     @AppStorage("loggedIn") private var loggedIn: Bool = false
     let dev = DeveloperPreview.instance
     
@@ -32,6 +34,9 @@ struct SocialMediaApp: App {
                         .navigationBarHidden(true)
                         .environmentObject(vm_exploreView)
                 }
+            }
+            .onAppear{
+                firebaseManager.fetchData()
             }
         }
     }

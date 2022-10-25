@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A85FF4772907F1EE00B7C938 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A85FF4762907F1EE00B7C938 /* FirebaseFirestore */; };
+		A85FF4792907F50E00B7C938 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85FF4782907F50E00B7C938 /* Constants.swift */; };
 		A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86311F528FD63A200CFA3EF /* SocialMediaApp.swift */; };
 		A86311F828FD63A200CFA3EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86311F728FD63A200CFA3EF /* ContentView.swift */; };
 		A86311FA28FD63A500CFA3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A86311F928FD63A500CFA3EF /* Assets.xcassets */; };
@@ -62,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A85FF4782907F50E00B7C938 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A86311F228FD63A200CFA3EF /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A86311F528FD63A200CFA3EF /* SocialMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaApp.swift; sourceTree = "<group>"; };
 		A86311F728FD63A200CFA3EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,17 +125,26 @@
 				A8AE6D482902B6E6000E16AC /* FirebaseAuthCombine-Community in Frameworks */,
 				A884DE282906BF4F0019DDA4 /* iPhoneNumberField in Frameworks */,
 				A8AE6D462902B6E6000E16AC /* FirebaseAuth in Frameworks */,
+				A85FF4772907F1EE00B7C938 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A85FF4752907F1EE00B7C938 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A86311E928FD63A200CFA3EF = {
 			isa = PBXGroup;
 			children = (
 				A86311F428FD63A200CFA3EF /* SocialMedia */,
 				A86311F328FD63A200CFA3EF /* Products */,
+				A85FF4752907F1EE00B7C938 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +173,7 @@
 				A8AE6D4D2902BA13000E16AC /* GoogleService-Info.plist */,
 				A86311FB28FD63A500CFA3EF /* Preview Content */,
 				A8724034290152DC00E58E4B /* LaunchScreen.storyboard */,
+				A85FF4782907F50E00B7C938 /* Constants.swift */,
 			);
 			path = SocialMedia;
 			sourceTree = "<group>";
@@ -484,6 +497,7 @@
 				A8AE6D472902B6E6000E16AC /* FirebaseAuthCombine-Community */,
 				A8AE6D492902B6E6000E16AC /* FirebaseStorage */,
 				A884DE272906BF4F0019DDA4 /* iPhoneNumberField */,
+				A85FF4762907F1EE00B7C938 /* FirebaseFirestore */,
 			);
 			productName = SocialMedia;
 			productReference = A86311F228FD63A200CFA3EF /* SocialMedia.app */;
@@ -569,6 +583,7 @@
 				A86311F628FD63A200CFA3EF /* SocialMediaApp.swift in Sources */,
 				A8AE6D552902C2B9000E16AC /* FirebaseManager.swift in Sources */,
 				A86B722D28FEF0A0000DF147 /* ExploreImageContextModifier.swift in Sources */,
+				A85FF4792907F50E00B7C938 /* Constants.swift in Sources */,
 				A8AD821029002B4000B1EB0F /* ChatModel.swift in Sources */,
 				A8AE6D502902BE5C000E16AC /* RegisterUser.swift in Sources */,
 				A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */,
@@ -820,6 +835,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A85FF4762907F1EE00B7C938 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AE6D442902B6E6000E16AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		A882511C28FEB837008C3407 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A882511B28FEB837008C3407 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

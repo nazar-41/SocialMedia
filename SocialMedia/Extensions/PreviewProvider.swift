@@ -31,23 +31,29 @@ class DeveloperPreview{
                                               author: "Daniel Ebersole",
                                               downloadURL: "https://picsum.photos/id/1070/5472/3648")
     
-    let contact_1 = ContactModel(name: "Nazar",
+    let contact_1 = ContactModel(id: "",
+                                 name: "Nazar",
                                  surname: "Velkakayev",
                                  username: "n41",
                                  email: "nazarwelkakayew41@gmail.com",
-                                 phoneNumber: "99365590939")
+                                 phoneNumber: "99365590939",
+                                 createdDate: "200")
     
-    let contact_2 = ContactModel(name: "John",
+    let contact_2 = ContactModel(id: "",
+        name: "John",
                                  surname: "Doe",
                                  username: "johndoe",
                                  email: "jphndoe@gmail.com",
-                                 phoneNumber: "99365123456")
+                                 phoneNumber: "99365123456",
+                                 createdDate: "")
     
-    let contact_3 = ContactModel(name: "Steve",
+    let contact_3 = ContactModel(id: "",
+                                 name: "Steve",
                                  surname: "Jobs",
                                  username: "steve_apple",
                                  email: "stevejobs@gmail.com",
-                                 phoneNumber: "99365123456")
+                                 phoneNumber: "99365123456",
+                                 createdDate:"")
     
     
 //    var postCardModel_1: PostCardModel{

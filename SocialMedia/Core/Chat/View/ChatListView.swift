@@ -29,7 +29,7 @@ struct ChatListView: View {
                 .padding(.top, 10)
 
             List{
-                ForEach(vm_chatListView.filteredContacts(startingArray: chatListArr)) { contact in
+                ForEach(vm_chatListView.filteredContacts(startingArray: chatListArr), id: \.self) { contact in
                     NavigationLink{
                         DirectChatView(contact: contact)
                     }label: {

@@ -76,4 +76,7 @@ class FirebaseManager: ObservableObject{
             self.addSuccess = true
         }
     }
+    
+    
+    
 }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
-    
+    @StateObject private var vm_profileView = VM_ProfileView()
+
     @State private var showSharePostSheet: Bool = false
     
     var body: some View {
@@ -22,7 +23,7 @@ struct ProfileView: View {
                         Image(systemName: "bag")
                             .font(.system(size: 13, weight: .heavy))
                         
-                        Text("velkakayew_n")
+                        Text(vm_profileView.userProfile?.username ?? "-")
                             .font(.system(size: 19, weight: .heavy))
                     }
                 }
@@ -172,7 +173,7 @@ extension ProfileView{
             .padding(.top)
             
             HStack{
-                Text("Nazar")
+                Text(vm_profileView.userProfile?.name ?? "-")
                     .font(.system(size: 13, weight: .bold))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }

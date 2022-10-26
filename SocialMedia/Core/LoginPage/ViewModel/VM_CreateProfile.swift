@@ -5,13 +5,18 @@
 //  Created by Belli's MacBook on 25/10/2022.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 
 class VM_CreateProfile: ObservableObject{
     @Published var contactList: [ContactModel] = []
     @Published var isSuccess: Bool = false
+    
+    @AppStorage("email") private var email: String = ""
+    @AppStorage("loggedIn") private var loggedIn: Bool = false
+
+
     
     let firebaseManager = FirebaseManager()
     
@@ -31,7 +36,10 @@ class VM_CreateProfile: ObservableObject{
             firebaseManager.$addSuccess
                 .sink {[weak self] isSuccess in
                     guard let self = self else {return}
+                    self.email = user.email
                     self.isSuccess = isSuccess
+                    self.loggedIn = true
+                    
                 }
                 .store(in: &cancellables)
             

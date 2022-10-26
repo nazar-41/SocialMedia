@@ -22,6 +22,8 @@ struct CreateProfile: View {
     @State private var surname: String = ""
     @State private var userName: String = ""
     @State private var phoneNumber: String = ""
+    let email: String
+    
     
     var body: some View {
         NavigationView{
@@ -65,7 +67,6 @@ struct CreateProfile: View {
                         
                     }
                 }
-                .padding(.top)
                 
                 VStack(spacing: 20){
                     
@@ -94,7 +95,7 @@ struct CreateProfile: View {
                                                    name: name,
                                                    surname: surname,
                                                    username: userName,
-                                                   email: "n/a",
+                                                   email: email,
                                                    phoneNumber: phoneNumber,
                                                    createdDate: "\(Date.now)")
                         
@@ -123,26 +124,24 @@ struct CreateProfile: View {
                 
             }
             .padding(.horizontal)
-            //            .navigationTitle("Profile")
-            //            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: $image)
             }
-            .background{
-                Image("asman_logo")
-                    .resizable()
-                    .scaledToFit()
-                    .blur(radius: 15)
-                
-                
-            }
+//            .background{
+//                Image("asman_logo")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .blur(radius: 15)
+//
+//
+//            }
         }
     }
 }
 
 struct CreateProfile_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile()
+        CreateProfile(email: "nazarwelkakayew41@gmail.com")
     }
 }
 

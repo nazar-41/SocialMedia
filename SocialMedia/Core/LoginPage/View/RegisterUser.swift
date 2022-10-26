@@ -160,7 +160,7 @@ struct RegisterUser: View {
             
         }
         .fullScreenCover(isPresented: $showCreateProfileSheet){
-            CreateProfile()
+            CreateProfile(email: email)
         }
         .alert(item: $alertModel) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
@@ -207,7 +207,6 @@ struct RegisterUser: View {
             
             if let result = result{
                 print("\nsuccessfully signed up: \(result.user.uid)")
-                loggedIn = true
                 showCreateProfileSheet = true
                 
                 //isSuccess = true

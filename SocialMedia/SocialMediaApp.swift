@@ -33,6 +33,7 @@ struct SocialMediaApp: App {
                     RegisterUser()
                         .navigationBarHidden(true)
                         .environmentObject(vm_exploreView)
+
                 }
             }
         }

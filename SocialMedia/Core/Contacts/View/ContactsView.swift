@@ -55,7 +55,7 @@ struct ContactsView: View {
                 }
                 
                 
-                ForEach(vm_contactsView.filteredContacts(startingArray: allContacts)) { contact in
+                ForEach(vm_contactsView.filteredContacts(startingArray: allContacts), id: \.self) { contact in
                     NavigationLink {
                         ContactProfileView(contact: contact)
                             .environmentObject(vm_exploreView)

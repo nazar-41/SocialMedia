@@ -15,7 +15,7 @@ struct CreateProfile: View {
     @State private var isSuccess: Bool = false
     
     
-    @State private var image: Image? = nil
+    //@State private var image: UIImage? = nil
     
     @State private var showImagePicker: Bool = false
     @State private var name: String = ""
@@ -51,8 +51,8 @@ struct CreateProfile: View {
                         showImagePicker = true
                     }
                 } label: {
-                    if let image = image{
-                        image
+                    if let image = vm_createProfile.profileImage{
+                        Image(uiImage: image)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 150)
@@ -125,7 +125,7 @@ struct CreateProfile: View {
             }
             .padding(.horizontal)
             .sheet(isPresented: $showImagePicker) {
-                ImagePicker(image: $image)
+                ImagePicker(image: $vm_createProfile.profileImage)
             }
 //            .background{
 //                Image("asman_logo")

@@ -12,6 +12,7 @@ import Combine
 class VM_CreateProfile: ObservableObject{
     @Published var contactList: [ContactModel] = []
     @Published var isSuccess: Bool = false
+    @Published var profileImage: UIImage? = nil
     
     @AppStorage("email") private var email: String = ""
     @AppStorage("loggedIn") private var loggedIn: Bool = false
@@ -23,7 +24,7 @@ class VM_CreateProfile: ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     
     func registerUser(user: ContactModel){
-        firebaseManager.addUser(user: user)
+        firebaseManager.addUser(user: user, profileImage: profileImage)
         
         defer{
             firebaseManager.$users

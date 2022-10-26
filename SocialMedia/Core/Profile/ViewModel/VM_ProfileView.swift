@@ -23,6 +23,8 @@ class VM_ProfileView: ObservableObject{
     }
     
     private func getProfileData(){
+      //  firebaseManager.fetchData()
+        
         firebaseManager.$users
             .sink {[weak self] returnnedList in
                 guard let self = self else{return}

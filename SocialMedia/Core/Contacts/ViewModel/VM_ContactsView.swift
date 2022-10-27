@@ -6,20 +6,40 @@
 //
 
 import Foundation
+import Combine
 
 
 class VM_ContactsView: ObservableObject{
     @Published var searchBarText: String = ""
     
+    @Published var allContacts: [ContactModel] = []
     
-    func filteredContacts(startingArray: [ContactModel])-> [ContactModel]{
-        guard !searchBarText.isEmpty else {return startingArray}
+    private let firebaseManager = FirebaseManager()
+    private var cancellables = Set<AnyCancellable>()
+    
+    
+    init(){
+        getAllContacts()
+    }
+    
+    func filteredContacts()-> [ContactModel]{
+        guard !searchBarText.isEmpty else {return allContacts}
         
         let lowercasedText = searchBarText.lowercased()
         
-        let filtered = startingArray.filter({$0.name.contains(lowercasedText) || $0.surname.contains(lowercasedText) || $0.username.contains(lowercasedText) || $0.email.contains(lowercasedText) || $0.phoneNumber.contains(lowercasedText)})
+        let filtered = allContacts.filter({$0.name.contains(lowercasedText) || $0.surname.contains(lowercasedText) || $0.username.contains(lowercasedText) || $0.email.contains(lowercasedText) || $0.phoneNumber.contains(lowercasedText)})
         
         
         return filtered
+    }
+    
+    private func getAllContacts(){
+        firebaseManager.$users
+            .sink {[weak self] returnedContacts in
+                guard let self = self else {return}
+                
+                self.allContacts = returnedContacts
+            }
+            .store(in: &cancellables)
     }
 }

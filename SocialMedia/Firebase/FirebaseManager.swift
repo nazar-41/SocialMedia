@@ -16,12 +16,14 @@ class FirebaseManager: ObservableObject{
     
     @Published var users: [ContactModel] = []
     @Published var addSuccess: Bool = false
+    @Published var profileImage: UIImage? = nil
     @AppStorage("email") private var email: String = ""
     
     private let database = Firestore.firestore()
     
     init(){
         fetchData()
+        downloadProfileImage()
     }
     
     func fetchData(){
@@ -117,9 +119,28 @@ class FirebaseManager: ObservableObject{
                 }
             }
         }
+    }
+    
+    func downloadProfileImage(){
+        let folderReference = Storage.storage().reference()
+        let imageReference = folderReference.child("profile_images/\(email).png")
         
-
+        imageReference.getData(maxSize: 5 * 1024 * 1024) {[weak self] data, error in // 5 MB
+            guard error == nil else{
+                print("\n error downloading image: \(error)")
+                return
+            }
             
+            guard let data = data else{
+                print("no data image")
+                return
+            }
+            
+            guard let self = self else{return}
+            
+            self.profileImage = UIImage(data: data)
+            
+        }
     }
     
     private func availableImageSize(image: UIImage?)-> Bool{

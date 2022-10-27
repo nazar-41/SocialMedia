@@ -124,20 +124,38 @@ extension ProfileView{
                 Button {
                     //more code here
                 } label: {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
-                        .overlay (
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .symbolRenderingMode(.multicolor)
-                                .foregroundColor(.blue)
-                                .frame(width: 20, height: 20)
-                            
-                            , alignment: .bottomTrailing
-                        )
+                    if let image = vm_profileView.profileImage{
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                            .overlay (
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .symbolRenderingMode(.multicolor)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 20, height: 20)
+                                
+                                , alignment: .bottomTrailing
+                            )
+                    }else{
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                            .overlay (
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .symbolRenderingMode(.multicolor)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 20, height: 20)
+                                
+                                , alignment: .bottomTrailing
+                            )
+                    }
                 }
                 
                 

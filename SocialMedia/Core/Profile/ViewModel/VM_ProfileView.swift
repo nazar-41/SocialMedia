@@ -17,6 +17,7 @@ class VM_ProfileView: ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     
     @Published var userProfile: ContactModel? = nil
+    @Published var profileImage: UIImage? = nil
     
     init(){
         getProfileData()
@@ -31,8 +32,22 @@ class VM_ProfileView: ObservableObject{
                 
                 if let data = returnnedList.first(where: {$0.email == self.email}){
                     self.userProfile = data
+                  //  self.downloadProfileImage()
                 }
             }
             .store(in: &cancellables)
+        
+        firebaseManager.$profileImage
+            .sink {[weak self] returnedImage in
+                guard let self = self else {return}
+                self.profileImage = returnedImage
+            }
+            .store(in: &cancellables)
+        
+        
     }
+    
+//    private func downloadProfileImage(){
+//        profileImage = firebaseManager.downloadImage()
+//    }
 }

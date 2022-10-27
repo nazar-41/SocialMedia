@@ -54,21 +54,23 @@ struct ContactsView: View {
                     print("add new post tapped")
                 }
                 
-                
-                ForEach(vm_contactsView.filteredContacts(), id: \.self) { contact in
-                    NavigationLink {
-                        ContactProfileView(contact: contact)
-                            .environmentObject(vm_exploreView)
-                    } label: {
-                        ContactRowView(contact: contact)
-          
+                if let allContacts = vm_contactsView.allContacts{
+                    ForEach(allContacts) { contact in
+                        NavigationLink {
+                            ContactProfileView(contact: contact)
+                                .environmentObject(vm_exploreView)
+                        } label: {
+                            ContactRowView(contact: contact)
+                            
+                        }
+                        .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
+                        .contentShape(Rectangle())
+                        
+                        
+                        
                     }
-                    .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
-                    .contentShape(Rectangle())
-
-                    
-  
                 }
+                
                 
             }
             .listStyle(.plain)

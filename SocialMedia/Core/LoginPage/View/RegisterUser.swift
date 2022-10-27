@@ -20,6 +20,7 @@ struct RegisterUser: View {
     @State private var showCreateProfileSheet: Bool = false
     
     @AppStorage("loggedIn") private var loggedIn: Bool = false
+    @AppStorage("email") private var loginEmail: String = ""
     
     //@StateObject private var
     
@@ -182,6 +183,7 @@ struct RegisterUser: View {
             }
             if let result = result{
                 print("\nsuccessfully logged in: \(result.user.uid)")
+                loginEmail = email
                 loggedIn = true
                 isSuccess = true
             }else{

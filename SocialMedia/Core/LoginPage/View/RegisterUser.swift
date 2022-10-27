@@ -175,7 +175,7 @@ struct RegisterUser: View {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password){result, error in
+        Auth.auth().signIn(withEmail: email, password: password){ result, error in
             guard error == nil else{
                 print("error logging in: \(String(describing: error))")
                 alertModel = AlertModel(title: "Error", message: error!.localizedDescription)
@@ -198,7 +198,8 @@ struct RegisterUser: View {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        Auth.auth().createUser(withEmail: email, password: password) {result, error in
+            
             guard error == nil else{
                 print("error signing up: \(error)")
                 

@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 
 
 
@@ -150,6 +151,10 @@ class FirebaseManager: ObservableObject{
         
         return sizeInMB <= 2
         
+    }
+    
+    private func removeNotSignedUsers(){
+       // let test = Auth.auth().getStoredUser(forAccessGroup: nil)
     }
     
     

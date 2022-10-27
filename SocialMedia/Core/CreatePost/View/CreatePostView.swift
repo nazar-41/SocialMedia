@@ -10,7 +10,19 @@ import SwiftUI
 struct CreatePostView: View {
     @Environment(\.presentationMode) private var presentationMode
     
-    @State private var postText: String = "What do you want to talk about?"
+    @StateObject private var vm_createPostView = VM_CreatePostView()
+    
+    @AppStorage("email") private var email: String = ""
+    
+    @State private var postText: String = ""
+    
+    @State private var showImagePickerSheet: Bool = false
+    
+    @State private var image: UIImage? = nil
+    
+    
+    let defaultPlaceholder: String = "What do you want to talk about?"
+    
     var body: some View {
         VStack(spacing: 0){
             header
@@ -21,24 +33,39 @@ struct CreatePostView: View {
                     HStack{
                         Circle()
                             .frame(width: 30)
-                        
+
                         Text("Nazar Velkakayev")
                             .font(.system(size: 14, weight: .semibold))
-                        
+
                         Spacer()
                     }
-                    
-                    
-                    TextEditor(text: $postText)
-                        .font(.subheadline)
-                        .frame(height: 300)
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(.gray.opacity(0.5)))
-                    
+
+
+                    ZStack(alignment: .topLeading){
+                        
+                        TextEditor(text: $postText)
+                            .font(.subheadline)
+                            .frame(height: 300)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10).stroke(.gray.opacity(0.5)))
+                            .overlay(
+                                    Text(postText.isEmpty ? defaultPlaceholder : "")
+                                        .font(.subheadline)
+                                        .disabled(true)
+                                        .padding(10)
+                                        .foregroundColor(.gray)
+                                    
+                                    , alignment: .topLeading
+                                )
+                        
+                    }
+
                     HStack {
                         Spacer()
 
                         Button {
                             //more code here
+                            showImagePickerSheet = true
                         } label: {
                             HStack{
                                 Image(systemName: "photo.fill")
@@ -49,42 +76,37 @@ struct CreatePostView: View {
                         }
                     }
                     .padding(.top, 10)
-                    
+
                 }
                 .padding(.horizontal)
                 .padding(.top)
+                .overlay (
+                    Image(uiImage: vm_createPostView.image ?? UIImage())
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .padding(.bottom, 30)
+                            .padding(.trailing, 10)
+                    
+                    ,alignment: .bottomTrailing
+                )
+                
+                VStack(alignment: .leading){
+
+                }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
             
             Spacer()
             
-//
-//            ZStack(alignment: .top){
-//                VStack{
-//                    Capsule()
-//                        .fill(.white)
-//                        .frame(width: 40, height: 7)
-//
-//                    VStack(alignment: .leading){
-//
-//
-//                       // .frame(maxWidth: .infinity, alignment: .leading)
-//
-//
-//                    }
-//                    .padding(.top)
-//                    .font(.system(size: 14, weight: .bold))
-//
-//                    Spacer()
-//                }
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                .padding()
-//
-//
-//            }
-//            .frame(height: 300)
-//            .background(RoundedRectangle(cornerRadius: 30).fill(.gray.opacity(0.4)))
             
-            
+        }
+        .sheet(isPresented: $showImagePickerSheet, content: {
+            ImagePicker(image: $vm_createPostView.image)
+        })
+        .onTapGesture {
+            UIApplication.shared.endEditing()
         }
 //        .edgesIgnoringSafeArea(.bottom)
     }
@@ -124,6 +146,14 @@ extension CreatePostView{
                 
                 Button {
                     //more code here
+                    let newPost = PostModel(author: email,
+                                            text: postText,
+                                            image: "no image",
+                                            date: "\(Date())",
+                                            likes: "2")
+                    
+                    vm_createPostView.sharePost(post: newPost, environment: presentationMode)
+                    
                 } label: {
                     Text("Post")
                         .padding(.vertical, 5)

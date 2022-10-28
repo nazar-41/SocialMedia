@@ -18,6 +18,7 @@ struct SocialMediaApp: App {
     
     @StateObject private var vm_exploreView = VM_ExploreView()
     @StateObject private var firebaseManager = FirebaseManager()
+    @StateObject private var globalDownload = GlobalDownload()
     
     @AppStorage("loggedIn") private var loggedIn: Bool = false
     let dev = DeveloperPreview.instance
@@ -29,10 +30,12 @@ struct SocialMediaApp: App {
                     ContentView()
                         .navigationBarHidden(true)
                         .environmentObject(vm_exploreView)
+                        .environmentObject(globalDownload)
                 }else{
                     RegisterUser()
                         .navigationBarHidden(true)
                         .environmentObject(vm_exploreView)
+                        .environmentObject(globalDownload)
 
                 }
             }

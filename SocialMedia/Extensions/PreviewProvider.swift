@@ -34,13 +34,13 @@ class DeveloperPreview{
     let contact_1 = ContactModel(id: "",
                                  name: "Nazar",
                                  surname: "Velkakayev",
-                                 username: "n41",
+                                 username: "@n41",
                                  email: "nazarwelkakayew41@gmail.com",
                                  phoneNumber: "99365590939",
                                  createdDate: "200")
     
     let contact_2 = ContactModel(id: "",
-        name: "John",
+                                 name: "John",
                                  surname: "Doe",
                                  username: "johndoe",
                                  email: "jphndoe@gmail.com",
@@ -56,29 +56,11 @@ class DeveloperPreview{
                                  createdDate:"")
     
     
-//    var postCardModel_1: PostCardModel{
-//        let author = ExploreCardModel(id: "117",
-//                                      author: "Daniel Ebersole",
-//                                      downloadURL: "https://picsum.photos/id/117/1544/1024")
-//
-//        return PostCardModel(author: author, isLiked: false)
-//    }
-//
-//    var postCardModel_2: PostCardModel{
-//        let author = ExploreCardModel(id: "117",
-//                                      author: "Daniel Ebersole",
-//                                      downloadURL: "https://picsum.photos/id/1084/4579/3271")
-//
-//        return PostCardModel(author: author, isLiked: false)
-//    }
-//
-//    var postCardModel_3: PostCardModel{
-//        let author = ExploreCardModel(id: "117",
-//                                      author: "Daniel Ebersole",
-//                                      downloadURL: "https://picsum.photos/id/1070/5472/3648")
-//
-//        return PostCardModel(author: author, isLiked: false)
-//    }
+    let postCardModel = PostModel(author: "nazarwelkakayew41@gmail.com",
+                                  text: "A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound",
+                                  image: "https://picsum.photos/id/1070/5472/3648",
+                                  date: "\(Date())",
+                                  likes: "2")
     
     
 }

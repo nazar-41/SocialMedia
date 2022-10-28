@@ -11,6 +11,9 @@ struct ContentView: View {
     let contactArr = [DeveloperPreview.instance.contact_1,
                       DeveloperPreview.instance.contact_2,
                       DeveloperPreview.instance.contact_3]
+    
+    @EnvironmentObject private var globalDownload: GlobalDownload
+    
     var body: some View {
         TabView{
             
@@ -33,6 +36,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(VM_ExploreView())
+            .environmentObject(GlobalDownload())
     }
 }
 

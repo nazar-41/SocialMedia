@@ -59,6 +59,8 @@
 		A8AE6D532902C15B000E16AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AE6D522902C15B000E16AC /* AppDelegate.swift */; };
 		A8AE6D552902C2B9000E16AC /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AE6D542902C2B9000E16AC /* FirebaseManager.swift */; };
 		A8AE6D572902C6FC000E16AC /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AE6D562902C6FC000E16AC /* AlertModel.swift */; };
+		A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */; };
+		A8B9B571290BF9E700DCD70F /* GlobalDowload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */; };
 		A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */; };
 		A8EACF7929094A4C004F8C97 /* VM_ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */; };
 		A8FFEFDB290572AD007B5149 /* VM_ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */; };
@@ -115,6 +117,8 @@
 		A8AE6D522902C15B000E16AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8AE6D542902C2B9000E16AC /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		A8AE6D562902C6FC000E16AC /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDowload.swift; sourceTree = "<group>"; };
 		A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ContactsView.swift; sourceTree = "<group>"; };
 		A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ProfileView.swift; sourceTree = "<group>"; };
 		A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ChatListView.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 			children = (
 				A89F000F28FD84180070B280 /* ExploreViewDataService.swift */,
 				A89F001A28FD87220070B280 /* ExploreViewImageService.swift */,
+				A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				A8FFEFDF29057582007B5149 /* CreatePostView.swift */,
+				A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */,
+				A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */,
 				A8701CEF290ABAD100A45E40 /* PostModel.swift in Sources */,
 				A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */,
 				A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */,
@@ -644,6 +651,7 @@
 				A8AE6D4C2902B778000E16AC /* VM_LoginSignup.swift in Sources */,
 				A86B722A28FEC7EF000DF147 /* E_layout3.swift in Sources */,
 				A893DB5D2903F63600266EE8 /* PostListView.swift in Sources */,
+				A8B9B571290BF9E700DCD70F /* GlobalDowload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ struct ContentView: View {
         TabView{
             
            // tabItemView(view: ExploreView(), icon: "magnifyingglass")
-            tabItemView(view: Text("Home"), icon: "house")
+            tabItemView(view: HomeView(), icon: "house")
             
             tabItemView(view: ChatListView(), icon: "ellipsis.message")
 

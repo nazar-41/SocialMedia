@@ -61,6 +61,7 @@
 		A8AE6D572902C6FC000E16AC /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AE6D562902C6FC000E16AC /* AlertModel.swift */; };
 		A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */; };
 		A8B9B571290BF9E700DCD70F /* GlobalDowload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */; };
+		A8B9B573290C07B700DCD70F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B572290C07B700DCD70F /* HomeView.swift */; };
 		A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */; };
 		A8EACF7929094A4C004F8C97 /* VM_ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */; };
 		A8FFEFDB290572AD007B5149 /* VM_ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */; };
@@ -119,6 +120,7 @@
 		A8AE6D562902C6FC000E16AC /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDowload.swift; sourceTree = "<group>"; };
+		A8B9B572290C07B700DCD70F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ContactsView.swift; sourceTree = "<group>"; };
 		A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ProfileView.swift; sourceTree = "<group>"; };
 		A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ChatListView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		A8701CEC290ABAB400A45E40 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8B9B572290C07B700DCD70F /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */,
 				A882512028FEBB50008C3407 /* E_layout1.swift in Sources */,
 				A8EACF7929094A4C004F8C97 /* VM_ProfileView.swift in Sources */,
+				A8B9B573290C07B700DCD70F /* HomeView.swift in Sources */,
 				A8724041290181BF00E58E4B /* LoginView.swift in Sources */,
 				A872403C290165A800E58E4B /* ChatListView.swift in Sources */,
 				A8FFEFE229057CF3007B5149 /* View.swift in Sources */,

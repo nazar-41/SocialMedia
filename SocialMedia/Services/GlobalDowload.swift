@@ -95,17 +95,30 @@ class GlobalDownload: ObservableObject{
             
             //MARK: update list on the main thread
             DispatchQueue.main.async {
-                self.postList = snapshot.documents.map { document in
-                    return PostModel(author: document["author"] as? String ?? "-",
-                                     text: document["text"] as? String ?? "-",
-                                     image: document["image"] as? String ?? "-",
-                                     date: document["date"] as? String ?? "-",
-                                     likes: document["likes"] as? String ?? "-")
-                }
+                self.postList = snapshot.documents
+                    .map { document in
+                        return PostModel(author: document["author"] as? String ?? "-",
+                                         text: document["text"] as? String ?? "-",
+                                         image: document["image"] as? String ?? "-",
+                                         date: document["date"] as? String ?? "-",
+                                         likes: document["likes"] as? String ?? "-")
+                        
+                    }
+                    .sorted(by: { self.getDateFromString(inputDate: $0.date) < self.getDateFromString(inputDate: $1.date) })
+
+                
+                
+                
                 
                 print("postlist: \(self.postList)")
             }
         }
-        
+    }
+    
+    private func getDateFromString(inputDate: String)-> Date{
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+        return olDateFormatter.date(from: inputDate) ?? Date()
     }
 }

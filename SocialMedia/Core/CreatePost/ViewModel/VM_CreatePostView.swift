@@ -47,7 +47,8 @@ class VM_CreatePostView: ObservableObject{
             
             guard let data = image.pngData() else{
                 print("error converting image to data")
-                return}
+                return
+            }
             
             let storageRef = Storage.storage().reference()
             let profileImagesFolderRef = storageRef.child("post_images/\(post.id).png")

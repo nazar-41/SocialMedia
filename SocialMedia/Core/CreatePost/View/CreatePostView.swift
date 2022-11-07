@@ -148,11 +148,11 @@ extension CreatePostView{
                     //more code here
                     let newPost = PostModel(author: email,
                                             text: postText,
-                                            image: "no image",
+                                            image: "",
                                             date: "\(Date())",
                                             likes: "2")
                     
-                    vm_createPostView.sharePost(post: newPost, environment: presentationMode)
+                    vm_createPostView.sharePost(image: vm_createPostView.image, post: newPost, environment: presentationMode)
                     
                 } label: {
                     Text("Post")

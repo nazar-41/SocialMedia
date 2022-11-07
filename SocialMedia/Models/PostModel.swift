@@ -13,7 +13,7 @@ struct PostModel: Identifiable{
     
     let author: String
     let text: String
-    let image: String
+    let image: String?
     let date: String
     let likes: String
 }

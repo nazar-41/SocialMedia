@@ -9,11 +9,19 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PostCardView: View {
+//    @StateObject private var vm_postCardView: VM_PostCardView
+    
     let profileImage: String?
     let postModel: PostModel
     let userList: [ContactModel]
     
-    
+//    init(postModel: PostModel, profileImage: String?, userList: [ContactModel]){
+//        _vm_postCardView = StateObject(wrappedValue: VM_PostCardView(post: postModel))
+//        self.postModel = postModel
+//        self.profileImage = profileImage
+//        self.userList = userList
+//    }
+//
     
     var body: some View {
         VStack(spacing: 0){
@@ -43,7 +51,7 @@ struct PostCardView: View {
                 }else{
                     ProgressView()
                 }
-
+                
                 Spacer()
                 
                 
@@ -57,15 +65,31 @@ struct PostCardView: View {
             }
             .padding(10)
             
-            
-            WebImage(url: URL(string: postModel.image))
-                .resizable()
-                .placeholder {
-                    Rectangle().foregroundColor(.gray.opacity(0.5))
-                        .frame(maxWidth: .infinity, maxHeight: 300)
+            VStack{
+                if let postedImage = postModel.image,
+                   !postedImage.isEmpty{
+                    WebImage(url: URL(string: postedImage))
+                        .resizable()
+                        .placeholder {
+                            Rectangle().foregroundColor(.gray.opacity(0.5))
+                                .frame(maxWidth: .infinity, maxHeight: 300)
+                        }
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width)
+
                 }
-                .scaledToFit()
-                .frame(width: UIScreen.main.bounds.width)
+                
+//                if let image = vm_postCardView.postImage{
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: UIScreen.main.bounds.width)
+//
+//                }
+            }
+           // .frame(minHeight: 50)
+            .border(.red)
+
             
             
             HStack{
@@ -121,6 +145,10 @@ struct PostCardView: View {
             .padding(.top, 5)
             
         }
+        
+        Divider()
+            .padding(10)
+        
     }
     
     private func getAuthorData(userList: [ContactModel])-> ContactModel?{
@@ -132,8 +160,7 @@ struct PostCardView: View {
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PostCardView(profileImage: "https://picsum.photos/id/117/1544/1024",
-                     postModel: dev.postCardModel,
+        PostCardView(profileImage: "https://picsum.photos/id/117/1544/1024", postModel: dev.postCardModel,
                      userList: [dev.contact_1, dev.contact_2, dev.contact_3])
     }
 }

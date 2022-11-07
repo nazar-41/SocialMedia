@@ -104,7 +104,7 @@ class GlobalDownload: ObservableObject{
                                          likes: document["likes"] as? String ?? "-")
                         
                     }
-                    .sorted(by: { self.getDateFromString(inputDate: $0.date) < self.getDateFromString(inputDate: $1.date) })
+                    .sorted(by: { self.getDateFromString(inputDate: $0.date) > self.getDateFromString(inputDate: $1.date) })
 
                 
                 

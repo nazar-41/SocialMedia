@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8572FEE29191B13000C42C3 /* VM_PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8572FED29191B13000C42C3 /* VM_PostCardView.swift */; };
 		A85FF4772907F1EE00B7C938 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A85FF4762907F1EE00B7C938 /* FirebaseFirestore */; };
 		A85FF4792907F50E00B7C938 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85FF4782907F50E00B7C938 /* Constants.swift */; };
 		A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85FF47A2908183C00B7C938 /* VM_CreateProfile.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A8572FED29191B13000C42C3 /* VM_PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_PostCardView.swift; sourceTree = "<group>"; };
 		A85FF4782907F50E00B7C938 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A85FF47A2908183C00B7C938 /* VM_CreateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_CreateProfile.swift; sourceTree = "<group>"; };
 		A86311F228FD63A200CFA3EF /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -516,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				A8701CF0290ABF4200A45E40 /* VM_CreatePostView.swift */,
+				A8572FED29191B13000C42C3 /* VM_PostCardView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */,
+				A8572FEE29191B13000C42C3 /* VM_PostCardView.swift in Sources */,
 				A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */,
 				A8701CEF290ABAD100A45E40 /* PostModel.swift in Sources */,
 				A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */,

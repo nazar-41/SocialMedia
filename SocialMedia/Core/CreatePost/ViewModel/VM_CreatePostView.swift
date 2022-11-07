@@ -17,6 +17,8 @@ class VM_CreatePostView: ObservableObject{
     @Published var imageDownloadUrl: String? = nil
     @Published var image: UIImage? = nil
 
+    /*
+    
     func sharePost(post: PostModel, environment: Binding<PresentationMode>){
         uploadImage(image: image, post: post)
         
@@ -40,8 +42,8 @@ class VM_CreatePostView: ObservableObject{
         }
     }
     
-    
-    private func uploadImage(image: UIImage?, post: PostModel){
+    */
+    func sharePost(image: UIImage?, post: PostModel, environment: Binding<PresentationMode>){
         if let image = image {
             guard availableImageSize(image: image) else{return}
             
@@ -64,7 +66,8 @@ class VM_CreatePostView: ObservableObject{
                 }
                 
                 let size = metaData.size
-                profileImagesFolderRef.downloadURL { url, error in
+                print("image size: \(size)")
+                profileImagesFolderRef.downloadURL {[weak self] url, error in
                     guard error == nil else{
                         print("\n error getting profile image download url: \(String(describing: error))")
                         return
@@ -74,11 +77,61 @@ class VM_CreatePostView: ObservableObject{
                         print("url is not returned")
                         return}
                     
-                    print("\n profile image download url: \(url)")
+                    print("\n \(url.absoluteString)\n")
+
+                    
+                    guard let self = self else{return}
+
+
+                    self.imageDownloadUrl = url.absoluteString
+
+                    let data: [String : Any] = ["author" : post.author,
+                                                "date" : post.date,
+                                                "image" : url.absoluteString,
+                                                "likes" : post.likes,
+                                                "text" : post.text]
+
+
+                    self.database.collection("posts").addDocument(data: data) { error in
+                        guard error == nil else{
+                            print("\n error sharing post: \(String(describing: error))")
+                            return
+                        }
+
+                        print("post shared successfully")
+                        print("\n post image download url: \(url)")
+
+                    }
+                    
                 }
             }
+            
+            environment.wrappedValue.dismiss()
+            
+        }else{
+            print("image returned nil")
+            
+            let data: [String : Any] = ["author" : post.author,
+                                        "date" : post.date,
+                                        "image" : "",
+                                        "likes" : post.likes,
+                                        "text" : post.text]
+            
+            
+            self.database.collection("posts").addDocument(data: data) { error in
+                guard error == nil else{
+                    print("\n error sharing post: \(String(describing: error))")
+                    return
+                }
+                
+                environment.wrappedValue.dismiss()
+                print("post shared successfully")
+            }
         }
+                
     }
+    
+
     
     private func availableImageSize(image: UIImage?)-> Bool{
         guard let image = image?.pngData() else{return false}

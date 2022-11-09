@@ -21,6 +21,7 @@ struct SocialMediaApp: App {
     @StateObject private var globalDownload = GlobalDownload()
     
     @AppStorage("loggedIn") private var loggedIn: Bool = false
+    @AppStorage("email") private var email: String = ""
     let dev = DeveloperPreview.instance
     
     var body: some Scene {

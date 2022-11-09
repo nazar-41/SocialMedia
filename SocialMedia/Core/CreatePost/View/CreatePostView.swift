@@ -17,9 +17,7 @@ struct CreatePostView: View {
     @State private var postText: String = ""
     
     @State private var showImagePickerSheet: Bool = false
-    
-    @State private var image: UIImage? = nil
-    
+        
     
     let defaultPlaceholder: String = "What do you want to talk about?"
     
@@ -152,7 +150,7 @@ extension CreatePostView{
                                             date: "\(Date())",
                                             likes: "2")
                     
-                    vm_createPostView.sharePost(image: vm_createPostView.image, post: newPost, environment: presentationMode)
+                    vm_createPostView.sharePost(post: newPost, environment: presentationMode)
                     
                 } label: {
                     Text("Post")

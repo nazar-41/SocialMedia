@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
+    @EnvironmentObject private var global_download: GlobalDownload
     @StateObject private var vm_profileView = VM_ProfileView()
 
     @State private var showSharePostSheet: Bool = false
@@ -111,6 +113,7 @@ struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
             .environmentObject(VM_ExploreView())
+            .environmentObject(GlobalDownload())
     }
 }
 
@@ -124,6 +127,7 @@ extension ProfileView{
                 Button {
                     //more code here
                 } label: {
+                    /*
                     if let image = vm_profileView.profileImage{
                         Image(uiImage: image)
                             .resizable()
@@ -156,6 +160,47 @@ extension ProfileView{
                                 , alignment: .bottomTrailing
                             )
                     }
+                     */
+                    if let currentUser = global_download.currentUser{
+                        WebImage(url: URL(string: currentUser.profile_image))
+                            .placeholder {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .overlay (
+                                        Image(systemName: "plus.circle.fill")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .symbolRenderingMode(.multicolor)
+                                            .foregroundColor(.blue)
+                                            .frame(width: 20, height: 20)
+                                        
+                                        , alignment: .bottomTrailing
+                                    )
+                            }
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                    }else{
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                            .overlay (
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .symbolRenderingMode(.multicolor)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 20, height: 20)
+                                
+                                , alignment: .bottomTrailing
+                            )
+                    }
+                    
                 }
                 
                 

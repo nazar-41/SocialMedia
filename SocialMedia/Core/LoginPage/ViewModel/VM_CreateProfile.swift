@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Combine
+import FirebaseStorage
+import FirebaseFirestore
 
 
 class VM_CreateProfile: ObservableObject{
@@ -16,6 +18,9 @@ class VM_CreateProfile: ObservableObject{
     
     @AppStorage("email") private var email: String = ""
     @AppStorage("loggedIn") private var loggedIn: Bool = false
+    
+    private let database = Firestore.firestore()
+
 
 
     
@@ -24,7 +29,7 @@ class VM_CreateProfile: ObservableObject{
     private var cancellables = Set<AnyCancellable>()
     
     func registerUser(user: ContactModel){
-        firebaseManager.addUser(user: user, profileImage: profileImage)
+        firebaseManager.addUser(image: profileImage, user: user)
         
         defer{
             firebaseManager.$users
@@ -38,12 +43,119 @@ class VM_CreateProfile: ObservableObject{
                 .sink {[weak self] isSuccess in
                     guard let self = self else {return}
                     self.email = user.email
-                    self.isSuccess = isSuccess
-                    self.loggedIn = true
+                   // self.isSuccess = isSuccess
+                   // self.loggedIn = true
                     
                 }
                 .store(in: &cancellables)
             
         }
     }
+    
+    
+    func addUser(user: ContactModel){
+        if let image = profileImage {
+          //  guard availableImageSize(image: image) else{return}
+            
+            guard let data = image.pngData() else{
+                print("error converting image to data")
+                return}
+            
+            let storageRef = Storage.storage().reference()
+            let profileImagesFolderRef = storageRef.child("profile_images/\(email).png")
+            
+            profileImagesFolderRef.putData(data, metadata: nil) { metaData, error in
+                guard error == nil else{
+                    print("\n error uploading image: \(String(describing: error))")
+                    return
+                }
+                guard let metaData = metaData else{
+                    print("\n invalid metadata")
+                    return
+                }
+                
+                profileImagesFolderRef.downloadURL {[weak self] url, error in
+                    guard error == nil else{
+                        print("\n error getting profile image download url: \(error)")
+                        return
+                    }
+                    
+                    guard let url = url else{ return}
+                    guard let self = self else{return}
+                   // self.profile_image_url = url.absoluteString
+                    
+                    self.downloadProfileImage()
+                    
+                    print("\n profile image download url: \(url)")
+                    
+                    let data: [String: Any] = ["name" : user.name,
+                                               "surname" : user.surname,
+                                               "username" : user.username,
+                                               "email" : self.email,
+                                               "mobile" : user.phoneNumber,
+                                               "created_date" : user.createdDate,
+                                               "profile_image" : url.absoluteString]
+                    
+                    self.database.collection(Constants.fb_userslist).addDocument(data: data) { error in
+                        guard error == nil else{
+                            print("error adding data: \(String(describing: error))")
+                            return
+                        }
+                      //  self.uploadImage(image: profileImage)
+                        self.email = user.email
+                       // self.isSuccess = isSuccess
+                       // self.loggedIn = true
+                        
+                        self.firebaseManager.fetchData()
+                        self.isSuccess = true
+                        self.loggedIn = true
+                    }
+                }
+            }
+        }else{
+            let data: [String: Any] = ["name" : user.name,
+                                       "surname" : user.surname,
+                                       "username" : user.username,
+                                       "email" : email,
+                                       "mobile" : user.phoneNumber,
+                                       "created_date" : user.createdDate,
+                                       "profile_image" : ""]
+            
+            database.collection(Constants.fb_userslist).addDocument(data: data) { error in
+                guard error == nil else{
+                    print("error adding data: \(String(describing: error))")
+                    return
+                }
+               // self.uploadImage(image: profileImage)
+               // self.email = user.email
+
+                self.firebaseManager.fetchData()
+                self.isSuccess = true
+                self.loggedIn = true
+
+            }
+        }
+    }
+    func downloadProfileImage(){
+        let folderReference = Storage.storage().reference()
+        let imageReference = folderReference.child("profile_images/\(email).png")
+        
+        imageReference.getData(maxSize: 5 * 1024 * 1024) {[weak self] data, error in // 5 MB
+            guard error == nil else{
+                print("\n error downloading image: \(error)")
+                return
+            }
+            
+            guard let data = data else{
+                print("no data image")
+                return
+            }
+            
+            guard let self = self else{return}
+            
+            self.profileImage = UIImage(data: data)
+            
+        }
+    }
+
 }

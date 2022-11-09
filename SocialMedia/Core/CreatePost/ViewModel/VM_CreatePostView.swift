@@ -43,7 +43,7 @@ class VM_CreatePostView: ObservableObject{
     }
     
     */
-    func sharePost(image: UIImage?, post: PostModel, environment: Binding<PresentationMode>){
+    func sharePost(post: PostModel, environment: Binding<PresentationMode>){
         if let image = image {
             guard availableImageSize(image: image) else{return}
             
@@ -55,7 +55,7 @@ class VM_CreatePostView: ObservableObject{
             let storageRef = Storage.storage().reference()
             let profileImagesFolderRef = storageRef.child("post_images/\(post.id).png")
             
-            let uploadTask = profileImagesFolderRef.putData(data, metadata: nil) { metaData, error in
+            profileImagesFolderRef.putData(data, metadata: nil) { metaData, error in
                 guard error == nil else{
                     print("\n error uploading image: \(String(describing: error))")
                     return
@@ -66,7 +66,7 @@ class VM_CreatePostView: ObservableObject{
                 }
                 
                 let size = metaData.size
-                print("image size: \(size)")
+              //  print("image size: \(size)")
                 profileImagesFolderRef.downloadURL {[weak self] url, error in
                     guard error == nil else{
                         print("\n error getting profile image download url: \(String(describing: error))")
@@ -77,7 +77,7 @@ class VM_CreatePostView: ObservableObject{
                         print("url is not returned")
                         return}
                     
-                    print("\n \(url.absoluteString)\n")
+                   // print("\n \(url.absoluteString)\n")
 
                     
                     guard let self = self else{return}
@@ -106,7 +106,6 @@ class VM_CreatePostView: ObservableObject{
                 }
             }
             
-            environment.wrappedValue.dismiss()
             
         }else{
             print("image returned nil")
@@ -124,10 +123,16 @@ class VM_CreatePostView: ObservableObject{
                     return
                 }
                 
-                environment.wrappedValue.dismiss()
                 print("post shared successfully")
             }
         }
+        
+//        defer{
+//               environment.wrappedValue.dismiss()
+//
+//        }
+        
+
                 
     }
     

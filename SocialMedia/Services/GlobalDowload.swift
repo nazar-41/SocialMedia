@@ -50,10 +50,10 @@ class GlobalDownload: ObservableObject{
                                         username:  document["username"] as? String ?? "-",
                                         email: document["email"] as? String ?? "-",
                                         phoneNumber: document["mobile"] as? String ?? "-",
-                                        createdDate: document["created_date"] as? String ?? "-")
-                }
+                                        createdDate: document["created_date"] as? String ?? "-",
+                                        profile_image: document["profile_image"] as? String ?? "")}
                 
-                print("userslist: \(self.userList)")
+              //  print("userslist: \(self.userList)")
                 
                 if self.currentUser == nil{
                     self.getCurrentUser()
@@ -110,7 +110,7 @@ class GlobalDownload: ObservableObject{
                 
                 
                 
-                print("postlist: \(self.postList)")
+              //  print("postlist: \(self.postList)")
             }
         }
     }

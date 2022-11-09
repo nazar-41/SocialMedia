@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct RegisterUser: View {
-    @State private var email: String = ""
+  //  @State private var email: String = ""
     @State private var password: String = ""
     
     @State private var isLoginPage: Bool = false
@@ -49,16 +49,16 @@ struct RegisterUser: View {
                     HStack(spacing: 0){
                         Image(systemName: "envelope")
                         
-                        TextField("email", text: $email)
+                        TextField("email", text: $loginEmail)
                             .padding()
                             .padding(.trailing, 10)
                             .overlay(
                                 Image(systemName: "xmark")
                                     .padding(5)
-                                    .opacity(email.isEmpty ? 0 : 1)
+                                    .opacity(loginEmail.isEmpty ? 0 : 1)
                                     .onTapGesture {
                                         UIApplication.shared.endEditing()
-                                        email = ""
+                                        loginEmail = ""
                                     }
                                 
                                 , alignment: .trailing
@@ -114,10 +114,10 @@ struct RegisterUser: View {
                 
                 Button {
                     if isLoginPage{
-                        login(email: email, password: password)
+                        login(password: password)
                         
                     }else{
-                        signup(email: email, password: password)
+                        signup(password: password)
                     }
                 } label: {
                     Text(isLoginPage ? "Login" : "Register")
@@ -141,7 +141,7 @@ struct RegisterUser: View {
                     Button {
                         //more code here
                         withAnimation {
-                            email = ""
+                            loginEmail = ""
                             password = ""
                             isLoginPage.toggle()
                             
@@ -161,7 +161,7 @@ struct RegisterUser: View {
             
         }
         .fullScreenCover(isPresented: $showCreateProfileSheet){
-            CreateProfile(email: email)
+            CreateProfile()
         }
         .alert(item: $alertModel) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
@@ -169,13 +169,13 @@ struct RegisterUser: View {
         }
     }
     
-    func login(email: String, password: String){
-        guard !email.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
+    func login(password: String){
+        guard !loginEmail.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
             print("fill email and password correctly")
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password){ result, error in
+        Auth.auth().signIn(withEmail: loginEmail, password: password){ result, error in
             guard error == nil else{
                 print("error logging in: \(String(describing: error))")
                 alertModel = AlertModel(title: "Error", message: error!.localizedDescription)
@@ -183,7 +183,7 @@ struct RegisterUser: View {
             }
             if let result = result{
                 print("\nsuccessfully logged in: \(result.user.uid)")
-                loginEmail = email
+               // loginEmail = email
                 loggedIn = true
                 isSuccess = true
             }else{
@@ -192,13 +192,13 @@ struct RegisterUser: View {
         }
     }
     
-    func signup(email: String, password: String){
-        guard !email.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
+    func signup(password: String){
+        guard !loginEmail.trimmingCharacters(in: .whitespaces).isEmpty && !password.trimmingCharacters(in: .whitespaces).isEmpty else{
             print("fill email and password correctly")
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password) {result, error in
+        Auth.auth().createUser(withEmail: loginEmail, password: password) {result, error in
             
             guard error == nil else{
                 print("error signing up: \(error)")

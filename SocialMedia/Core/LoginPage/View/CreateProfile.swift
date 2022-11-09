@@ -22,7 +22,10 @@ struct CreateProfile: View {
     @State private var surname: String = ""
     @State private var userName: String = ""
     @State private var phoneNumber: String = ""
-    let email: String
+    
+    @AppStorage("email") private var email: String = ""
+    
+  //  let email: String
     
     
     var body: some View {
@@ -97,9 +100,11 @@ struct CreateProfile: View {
                                                    username: userName,
                                                    email: email,
                                                    phoneNumber: phoneNumber,
-                                                   createdDate: "\(Date.now)")
+                                                   createdDate: "\(Date.now)",
+                                                   profile_image: "")
                         
-                        vm_createProfile.registerUser(user: contact)
+                        //vm_createProfile.registerUser(user: contact)
+                        vm_createProfile.addUser(user: contact)
                         
                     } label: {
                         Text("Start")
@@ -141,7 +146,7 @@ struct CreateProfile: View {
 
 struct CreateProfile_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile(email: "nazarwelkakayew41@gmail.com")
+        CreateProfile()
     }
 }
 

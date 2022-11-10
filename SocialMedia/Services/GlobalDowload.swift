@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class GlobalDownload: ObservableObject{
         
@@ -22,7 +23,8 @@ class GlobalDownload: ObservableObject{
     init(){
         getUserList()
         getCurrentUser()
-        getPostList()
+       // getPostList()
+        getPostList2()
     }
     
     
@@ -77,7 +79,7 @@ class GlobalDownload: ObservableObject{
             getCurrentUser()
         }
     }
-    
+    /*
     private func getPostList(){
         database.collection("posts").getDocuments() { snapshot, error in
             guard error == nil else{
@@ -111,6 +113,32 @@ class GlobalDownload: ObservableObject{
                 
                 
               //  print("postlist: \(self.postList)")
+            }
+        }
+    }
+     */
+    
+    private func getPostList2(){
+        database.collection("posts").addSnapshotListener {[weak self] querySnapshot, error in
+            guard error == nil else{
+                print("\n error getting post list: \(String(describing: error))")
+                return
+            }
+            
+            guard let posts = querySnapshot?.documents else{
+                print("\n error fetching documents")
+                return
+            }
+            
+            guard let self = self else{return}
+            
+            self.postList = posts.compactMap { post -> PostModel? in
+                do{
+                    return try post.data(as: PostModel.self)
+                }catch{
+                    print("\n error decoding post into Postmodel: \(error)")
+                    return nil
+                }
             }
         }
     }

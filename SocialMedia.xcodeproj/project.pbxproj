@@ -19,6 +19,7 @@
 		A86B722828FEC500000DF147 /* E_layout2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722728FEC500000DF147 /* E_layout2.swift */; };
 		A86B722A28FEC7EF000DF147 /* E_layout3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722928FEC7EF000DF147 /* E_layout3.swift */; };
 		A86B722D28FEF0A0000DF147 /* ExploreImageContextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B722C28FEF0A0000DF147 /* ExploreImageContextModifier.swift */; };
+		A86D5173291D2595000380B8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A86D5172291D2595000380B8 /* FirebaseFirestoreSwift */; };
 		A8701CEF290ABAD100A45E40 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8701CEE290ABAD100A45E40 /* PostModel.swift */; };
 		A8701CF1290ABF4200A45E40 /* VM_CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8701CF0290ABF4200A45E40 /* VM_CreatePostView.swift */; };
 		A8724035290152DC00E58E4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8724034290152DC00E58E4B /* LaunchScreen.storyboard */; };
@@ -139,6 +140,7 @@
 				A882511D28FEB837008C3407 /* SDWebImageSwiftUI in Frameworks */,
 				A8AE6D4A2902B6E6000E16AC /* FirebaseStorage in Frameworks */,
 				A8AE6D482902B6E6000E16AC /* FirebaseAuthCombine-Community in Frameworks */,
+				A86D5173291D2595000380B8 /* FirebaseFirestoreSwift in Frameworks */,
 				A884DE282906BF4F0019DDA4 /* iPhoneNumberField in Frameworks */,
 				A8AE6D462902B6E6000E16AC /* FirebaseAuth in Frameworks */,
 				A85FF4772907F1EE00B7C938 /* FirebaseFirestore in Frameworks */,
@@ -546,6 +548,7 @@
 				A8AE6D492902B6E6000E16AC /* FirebaseStorage */,
 				A884DE272906BF4F0019DDA4 /* iPhoneNumberField */,
 				A85FF4762907F1EE00B7C938 /* FirebaseFirestore */,
+				A86D5172291D2595000380B8 /* FirebaseFirestoreSwift */,
 			);
 			productName = SocialMedia;
 			productReference = A86311F228FD63A200CFA3EF /* SocialMedia.app */;
@@ -895,6 +898,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8AE6D442902B6E6000E16AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		A86D5172291D2595000380B8 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8AE6D442902B6E6000E16AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 		A882511C28FEB837008C3407 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

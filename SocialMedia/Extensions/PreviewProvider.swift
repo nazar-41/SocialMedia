@@ -59,7 +59,7 @@ class DeveloperPreview{
                                  profile_image: "https://picsum.photos/id/1070/5472/3648")
     
     
-    let postCardModel = PostModel(author: "nazarwelkakayew41@gmail.com",
+    let postCardModel = PostModel(id: "wertykjhgf2345678iuhgfdfg", author: "nazarwelkakayew41@gmail.com",
                                   text: "A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound",
                                   image: "https://picsum.photos/id/1070/5472/3648",
                                   date: "\(Date())",

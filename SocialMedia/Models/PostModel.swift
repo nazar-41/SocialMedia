@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct PostModel: Identifiable{
-    var id = UUID().uuidString
+struct PostModel: Identifiable, Codable{
+    var id: String
     
     let author: String
     let text: String

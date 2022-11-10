@@ -144,13 +144,13 @@ extension CreatePostView{
                 
                 Button {
                     //more code here
-                    let newPost = PostModel(author: email,
+                    let newPost = PostModel(id: UUID().uuidString, author: email,
                                             text: postText,
                                             image: "",
                                             date: "\(Date())",
                                             likes: "2")
                     
-                    vm_createPostView.sharePost(post: newPost, environment: presentationMode)
+                    vm_createPostView.sharePost2(post: newPost, environment: presentationMode)
                     
                 } label: {
                     Text("Post")

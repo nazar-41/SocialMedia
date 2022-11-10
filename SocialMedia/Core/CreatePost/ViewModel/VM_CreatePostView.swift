@@ -43,6 +43,8 @@ class VM_CreatePostView: ObservableObject{
     }
     
     */
+    
+    
     func sharePost(post: PostModel, environment: Binding<PresentationMode>){
         if let image = image {
             guard availableImageSize(image: image) else{return}
@@ -136,6 +138,15 @@ class VM_CreatePostView: ObservableObject{
                 
     }
     
+    
+    func sharePost2(post: PostModel, environment: Binding<PresentationMode>){
+        do {
+            try database.collection("posts").document().setData(from: post)
+            environment.wrappedValue.dismiss()
+        } catch {
+            print("\n error posting data: \(error)")
+        }
+    }
 
     
     private func availableImageSize(image: UIImage?)-> Bool{

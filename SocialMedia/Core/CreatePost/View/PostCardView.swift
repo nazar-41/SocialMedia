@@ -15,6 +15,8 @@ struct PostCardView: View {
         
     @EnvironmentObject private var globaldownload: GlobalDownload
     
+    @State private var showCommentSheet: Bool = false
+    
     
     var body: some View {
         VStack(spacing: 0){
@@ -89,19 +91,15 @@ struct PostCardView: View {
                 Button {
                     //more code here
                    // model.isLiked.toggle()
-                    globaldownload.updateGivenPost(id: postModel.id)
-                } label: {
-                    //MARK: solve this like function
-//                    Image(systemName: model.isLiked ? "heart.fill" : "heart")
-//                        .foregroundColor(model.isLiked ? .red : .black)
-                    
+                    globaldownload.likeGivenPost(id: postModel.id)
+                } label: {                    
                     Image(systemName: globaldownload.doesPostLiked(postID: postModel.id) ? "heart.fill" : "heart")
                         .foregroundColor(globaldownload.doesPostLiked(postID: postModel.id) ? .red : .gray)
                 }
                 
                 Button {
                     //more code here
-                    
+                    showCommentSheet.toggle()
                 } label: {
                     Image(systemName: "message")
                 }
@@ -138,10 +136,16 @@ struct PostCardView: View {
             .padding(.horizontal, 10)
             .padding(.top, 5)
             
+            Divider()
+                .padding(10)
+            
+        }
+        .sheet(isPresented: $showCommentSheet) {
+            PostCommentsSheet(post: postModel)
+                .environmentObject(globaldownload)
         }
         
-        Divider()
-            .padding(10)
+
         
     }
     
@@ -154,7 +158,9 @@ struct PostCardView: View {
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PostCardView(profileImage: "https://picsum.photos/id/117/1544/1024", postModel: dev.postCardModel,
+        PostCardView(profileImage: "https://picsum.photos/id/117/1544/1024",
+                     postModel: dev.postCardModel,
                      userList: [dev.contact_1, dev.contact_2, dev.contact_3])
+        .environmentObject(GlobalDownload())
     }
 }

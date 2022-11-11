@@ -150,7 +150,7 @@ class GlobalDownload: ObservableObject{
         return olDateFormatter.date(from: inputDate) ?? Date()
     }
     
-    func updateGivenPost(id: String){
+    func likeGivenPost(id: String){
         guard let postList = postList else{
             print("\n invalid post list")
             return
@@ -194,5 +194,42 @@ class GlobalDownload: ObservableObject{
         
         return post.likes.first(where: {$0 == postID}) != nil
         
+    }
+    
+    func commentGivenPost(id: String, comment: String){
+        guard let postList = postList else{
+            print("\n invalid post list")
+            return
+        }
+        
+        guard var givenPost = postList.first(where: {$0.id == id}) else{
+            print("\n no such post with an ID: \(id)")
+            return
+        }
+        
+        
+        guard let currentUser = currentUser else{return}
+        let comment = PostCommentModel(sender: currentUser.id, comment: comment)
+        
+        if givenPost.comments == nil{
+            givenPost.comments = [comment]
+        }else{
+            givenPost.comments?.append(comment)
+        }
+
+        
+        do {
+            try self.database.collection("posts").document(givenPost.id).setData(from: givenPost)
+        } catch {
+            print("\n error updating post: \(error)")
+        }
+    }
+    
+    func getUserbyId(email: String)-> ContactModel?{
+        guard let userList = userList else{
+            print("print invalid user list")
+            return nil
+        }
+        return userList.first(where: {$0.email == email})
     }
 }

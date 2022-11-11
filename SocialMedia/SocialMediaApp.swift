@@ -26,7 +26,7 @@ struct SocialMediaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            /*
+            
             NavigationView{
                 if loggedIn{
                     ContentView()
@@ -41,9 +41,9 @@ struct SocialMediaApp: App {
 
                 }
             }
-             */
+             
             
-            PostCommentsSheet(post: DeveloperPreview.instance.postCardModel)
+//            PostCommentsSheet(post: DeveloperPreview.instance.postCardModel)
         }
     }
 }

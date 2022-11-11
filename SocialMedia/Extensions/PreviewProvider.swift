@@ -64,7 +64,8 @@ class DeveloperPreview{
                                   image: "https://picsum.photos/id/1070/5472/3648",
                                   date: "\(Date())",
                                   likes: [""],
-                                  comments: ["Steve": "Nice app)"])
+                                  comments: [PostCommentModel(sender: "fwnwioneoiwe", comment: "nice job")])
+    
     
     
 }

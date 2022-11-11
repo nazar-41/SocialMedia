@@ -12,28 +12,37 @@ struct PostCommentsSheet: View {
     
     @State private var comment: String = ""
     
+    @EnvironmentObject private var global_download: GlobalDownload
+    @Environment(\.presentationMode) private var presentationMode
+    
     var body: some View {
         VStack{
             HStack{
-                Image(systemName: "xmark")
-                    .font(.headline)
-                    .padding()
-                
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.headline)
+                        .padding()
+                }
+
                 Spacer()
             }
 
-            
-            List(post.comments.sorted(by: >), id: \.key){author, comment in
-                VStack(alignment: .leading){
-                    Text(author)
-                        .font(.subheadline)
-                    
-                    Text(comment)
-                        .font(.headline)
+            if let comments = post.comments{
+                List(comments){comment in
+                    VStack(alignment: .leading){
+                        Text(global_download.getUserbyId(email: post.author)?.name ?? "")
+                            .font(.subheadline)
+                        
+                        Text(comment.comment)
+                            .font(.headline)
+                    }
                 }
+                
+            }else{
+                Spacer()
             }
-            
-            
             
             HStack(spacing: 0){
                 TextField("comment", text: $comment)
@@ -55,7 +64,7 @@ struct PostCommentsSheet: View {
                     .disableAutocorrection(true)
                 
                 Button {
-                    //more code here
+                    global_download.commentGivenPost(id: post.id, comment: comment)
                 } label: {
                     Image(systemName: "paperplane")
                         .padding(5)
@@ -73,13 +82,11 @@ struct PostCommentsSheet: View {
         }
         .padding(.bottom)
     }
-    
-    private func sendComment(){
-    }
 }
 
 struct PostCommentsSheet_Previews: PreviewProvider {
     static var previews: some View {
         PostCommentsSheet(post: dev.postCardModel)
+            .environmentObject(GlobalDownload())
     }
 }

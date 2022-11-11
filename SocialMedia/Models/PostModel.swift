@@ -16,5 +16,12 @@ struct PostModel: Identifiable, Codable{
     let image: String?
     let date: String
     var likes: [String]
-    var comments: [String : String]
+    var comments: [PostCommentModel]?
+}
+
+
+struct PostCommentModel: Codable, Identifiable{
+    var id = UUID().uuidString
+    let sender: String
+    let comment: String
 }

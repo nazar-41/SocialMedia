@@ -141,7 +141,7 @@ class VM_CreatePostView: ObservableObject{
     
     func sharePost2(post: PostModel, environment: Binding<PresentationMode>){
         do {
-            try database.collection("posts").document().setData(from: post)
+            try database.collection("posts").document(post.id).setData(from: post)
         } catch {
             print("\n error posting data: \(error)")
         }
@@ -199,7 +199,8 @@ class VM_CreatePostView: ObservableObject{
                                             text: post.text,
                                             image: url.absoluteString,
                                             date: post.date,
-                                            likes: post.likes)
+                                            likes: post.likes,
+                                            comments: post.comments)
                     
                     self.sharePost2(post: newPost, environment: environment)
                 }else{

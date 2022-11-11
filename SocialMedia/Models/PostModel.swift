@@ -15,5 +15,6 @@ struct PostModel: Identifiable, Codable{
     let text: String
     let image: String?
     let date: String
-    let likes: String
+    var likes: [String]
+    var comments: [String : String]
 }

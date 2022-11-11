@@ -149,4 +149,50 @@ class GlobalDownload: ObservableObject{
 
         return olDateFormatter.date(from: inputDate) ?? Date()
     }
+    
+    func updateGivenPost(id: String){
+        guard let postList = postList else{
+            print("\n invalid post list")
+            return
+        }
+        
+        guard var givenPost = postList.first(where: {$0.id == id}) else{
+            print("\n no such post with an ID: \(id)")
+            return
+        }
+        
+        
+        if !doesPostLiked(postID: id){
+            givenPost.likes.append(id)
+        }else{
+            print("\n post is already liked")
+        }
+        
+        do {
+            try self.database.collection("posts").document(givenPost.id).setData(from: givenPost)
+        } catch {
+            print("\n error updating post: \(error)")
+        }
+        
+        /*
+        let path = database.collection("posts").document(givenPost.id).addSnapshotListener { documentSnapshot, error in
+            guard error == nil else{
+                print("\n error updating post: \(error)")
+                return
+            }
+            
+            guard let document = documentSnapshot else{
+                print("\n invalid post return type")
+                return
+            }
+        }
+         */
+    }
+    
+    func doesPostLiked(postID: String)-> Bool{
+        guard let post = postList?.first(where: {$0.id == postID}) else{return false}
+        
+        return post.likes.first(where: {$0 == postID}) != nil
+        
+    }
 }

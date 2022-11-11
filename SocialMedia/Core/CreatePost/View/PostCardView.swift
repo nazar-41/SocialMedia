@@ -9,19 +9,12 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PostCardView: View {
-//    @StateObject private var vm_postCardView: VM_PostCardView
-    
     let profileImage: String?
     let postModel: PostModel
     let userList: [ContactModel]
+        
+    @EnvironmentObject private var globaldownload: GlobalDownload
     
-//    init(postModel: PostModel, profileImage: String?, userList: [ContactModel]){
-//        _vm_postCardView = StateObject(wrappedValue: VM_PostCardView(post: postModel))
-//        self.postModel = postModel
-//        self.profileImage = profileImage
-//        self.userList = userList
-//    }
-//
     
     var body: some View {
         VStack(spacing: 0){
@@ -96,13 +89,14 @@ struct PostCardView: View {
                 Button {
                     //more code here
                    // model.isLiked.toggle()
+                    globaldownload.updateGivenPost(id: postModel.id)
                 } label: {
                     //MARK: solve this like function
 //                    Image(systemName: model.isLiked ? "heart.fill" : "heart")
 //                        .foregroundColor(model.isLiked ? .red : .black)
                     
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.red)
+                    Image(systemName: globaldownload.doesPostLiked(postID: postModel.id) ? "heart.fill" : "heart")
+                        .foregroundColor(globaldownload.doesPostLiked(postID: postModel.id) ? .red : .gray)
                 }
                 
                 Button {
@@ -124,7 +118,7 @@ struct PostCardView: View {
             .padding(.horizontal, 10)
             .padding(.top, 10)
             
-            Text("\(postModel.likes) likes")
+            Text("\(postModel.likes.count) likes")
                 .font(.system(size: 15, weight: .medium))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)

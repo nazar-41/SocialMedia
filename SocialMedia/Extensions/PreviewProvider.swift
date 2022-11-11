@@ -63,7 +63,8 @@ class DeveloperPreview{
                                   text: "A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound",
                                   image: "https://picsum.photos/id/1070/5472/3648",
                                   date: "\(Date())",
-                                  likes: "2")
+                                  likes: [""],
+                                  comments: ["Steve": "Nice app)"])
     
     
 }

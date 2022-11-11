@@ -150,7 +150,13 @@ extension CreatePostView{
                                             date: "\(Date())",
                                             likes: "2")
                     
-                    vm_createPostView.sharePost2(post: newPost, environment: presentationMode)
+                    if let postImage = vm_createPostView.image{
+                        vm_createPostView.sharePostWithImage(image: postImage, post: newPost, environment: presentationMode)
+                        print("/n post with image")
+                    }else{
+                        vm_createPostView.sharePost2(post: newPost, environment: presentationMode)
+                        print("\n post without image")
+                    }
                     
                 } label: {
                     Text("Post")

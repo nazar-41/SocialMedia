@@ -165,6 +165,7 @@ class GlobalDownload: ObservableObject{
         if !doesPostLiked(postID: id){
             givenPost.likes.append(id)
         }else{
+            givenPost.likes.removeAll(where: {$0 == id})
             print("\n post is already liked")
         }
         

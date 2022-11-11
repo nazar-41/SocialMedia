@@ -9,7 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PostCardView: View {
-    let profileImage: String?
     let postModel: PostModel
     let userList: [ContactModel]
         
@@ -21,7 +20,7 @@ struct PostCardView: View {
     var body: some View {
         VStack(spacing: 0){
             HStack(spacing: 0){
-                WebImage(url: URL(string: profileImage ?? ""))
+                WebImage(url: URL(string: globaldownload.getUserbyId(email: postModel.author)?.profile_image ?? ""))
                     .resizable()
                     .placeholder {
                         Circle()
@@ -158,8 +157,7 @@ struct PostCardView: View {
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PostCardView(profileImage: "https://picsum.photos/id/117/1544/1024",
-                     postModel: dev.postCardModel,
+        PostCardView(postModel: dev.postCardModel,
                      userList: [dev.contact_1, dev.contact_2, dev.contact_3])
         .environmentObject(GlobalDownload())
     }

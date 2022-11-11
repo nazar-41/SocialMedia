@@ -61,7 +61,7 @@ class DeveloperPreview{
     
     let postCardModel = PostModel(id: "wertykjhgf2345678iuhgfdfg", author: "nazarwelkakayew41@gmail.com",
                                   text: "A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound",
-                                  image: "https://picsum.photos/id/1070/5472/3648",
+                                  image: "https://firebasestorage.googleapis.com:443/v0/b/socialmedia-340ab.appspot.com/o/profile_images%2Fnazar@gmail.com.png?alt=media&token=21a9e8c3-e31a-4cdf-b618-7a77ec2baba1",
                                   date: "\(Date())",
                                   likes: [""],
                                   comments: [PostCommentModel(sender: "fwnwioneoiwe", comment: "nice job")])

@@ -14,8 +14,7 @@ struct HomeView: View {
         VStack{
             ScrollView{
                 ForEach(globalDownload.postList ?? []){post in
-                    PostCardView(profileImage: "",
-                                 postModel: post,
+                    PostCardView(postModel: post,
                                  userList: globalDownload.userList ?? [])
                 }
             }

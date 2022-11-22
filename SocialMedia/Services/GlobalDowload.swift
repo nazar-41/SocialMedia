@@ -21,13 +21,14 @@ class GlobalDownload: ObservableObject{
     @AppStorage("email") private var currentUserEmail: String = ""
     
     init(){
-        getUserList()
-        getCurrentUser()
+        //getUserList()
+        getUsersList2()
+       // getCurrentUser()
        // getPostList()
         getPostList2()
     }
     
-    
+    /*
     private func getUserList(){
         database.collection("users_list").getDocuments() { snapshot, error in
             guard error == nil else{
@@ -53,7 +54,9 @@ class GlobalDownload: ObservableObject{
                                         email: document["email"] as? String ?? "-",
                                         phoneNumber: document["mobile"] as? String ?? "-",
                                         createdDate: document["created_date"] as? String ?? "-",
-                                        profile_image: document["profile_image"] as? String ?? "")}
+                                        profile_image: document["profile_image"] as? String ?? "-",
+                                        followers: <#T##[String]#>
+                    )}
                 
               //  print("userslist: \(self.userList)")
                 
@@ -64,6 +67,34 @@ class GlobalDownload: ObservableObject{
         }
         
     }
+     */
+    
+    private func getUsersList2(){
+        database.collection("users_list").addSnapshotListener {[weak self] querySnapshot, error in
+            guard error == nil else{
+                print("\n error getting user list")
+                return
+            }
+            
+            guard let users = querySnapshot?.documents else{
+                print("\n error fetching user list documents")
+                return
+            }
+            
+            guard let self = self else{return}
+            
+            self.userList = users.compactMap{ user -> ContactModel? in
+                do{
+                    return try user.data(as: ContactModel.self)
+                }catch{
+                    print("\n error decoding user into ContactModel: \(error)")
+                    return nil
+                }
+            }
+            
+            self.getCurrentUser()
+        }
+    }
     
     private func getCurrentUser(){
         guard let userList = userList else{
@@ -72,7 +103,7 @@ class GlobalDownload: ObservableObject{
         }
         
         currentUser = userList.first(where: {$0.email == currentUserEmail})
-        print("currentuser: \(currentUser)")
+        print("currentuser: \(String(describing: currentUser))")
         
         if self.userList == nil{
             print("\n reload user data")
@@ -222,7 +253,7 @@ class GlobalDownload: ObservableObject{
         do {
             try self.database.collection("posts").document(givenPost.id).setData(from: givenPost)
         } catch {
-            print("\n error updating post: \(error)")
+            print("\n error adding comment to post: \(error)")
         }
     }
     

@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct ContactsView: View {
-    let allContacts: [ContactModel]
-    
+struct ContactsView: View {    
     @StateObject private var vm_contactsView = VM_ContactsView()
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
+    @EnvironmentObject private var globalDownload: GlobalDownload
     
     var body: some View {
         VStack{
@@ -59,6 +58,7 @@ struct ContactsView: View {
                         NavigationLink {
                             ContactProfileView(contact: contact)
                                 .environmentObject(vm_exploreView)
+                                .environmentObject(globalDownload)
                         } label: {
                             ContactRowView(contact: contact)
                             
@@ -83,7 +83,7 @@ struct ContactsView: View {
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContactsView(allContacts: [dev.contact_1, dev.contact_2, dev.contact_3])
+            ContactsView()
                 .navigationBarHidden(true)
                 .environmentObject(VM_ExploreView())
         }

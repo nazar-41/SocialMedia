@@ -46,8 +46,4 @@ class VM_ProfileView: ObservableObject{
         
         
     }
-    
-//    private func downloadProfileImage(){
-//        profileImage = firebaseManager.downloadImage()
-//    }
 }

@@ -44,7 +44,7 @@ class VM_CreatePostView: ObservableObject{
     
     */
     
-    
+    /*
     func sharePost(post: PostModel, environment: Binding<PresentationMode>){
         if let image = image {
             guard availableImageSize(image: image) else{return}
@@ -128,16 +128,8 @@ class VM_CreatePostView: ObservableObject{
                 print("post shared successfully")
             }
         }
-        
-//        defer{
-//               environment.wrappedValue.dismiss()
-//
-//        }
-        
-
-                
     }
-    
+    */
     
     func sharePost2(post: PostModel, environment: Binding<PresentationMode>){
         do {
@@ -151,7 +143,7 @@ class VM_CreatePostView: ObservableObject{
             environment.wrappedValue.dismiss()
         }
     }
-    
+    /*
     private func saveImage2(image: UIImage?, post: PostModel){
         guard let postImage = image,
               let data = postImage.pngData() else{ return }
@@ -173,7 +165,7 @@ class VM_CreatePostView: ObservableObject{
             }
         }
     }
-    
+    */
     func sharePostWithImage(image: UIImage?, post: PostModel, environment: Binding<PresentationMode>){
      
         guard let postImage = image,
@@ -206,12 +198,10 @@ class VM_CreatePostView: ObservableObject{
                 }else{
                     print("\n image url is empty")
                 }
-                
             }
         }
-        
-        
     }
+    
     private func availableImageSize(image: UIImage?)-> Bool{
         guard let image = image?.pngData() else{return false}
         

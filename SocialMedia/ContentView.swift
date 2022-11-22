@@ -25,7 +25,7 @@ struct ContentView: View {
             
             tabItemView(view: ProfileView(), icon: "person")
             
-            tabItemView(view: ContactsView(allContacts: contactArr), icon: "plus.square")
+            tabItemView(view: ContactsView(), icon: "plus.square")
 
 
         }

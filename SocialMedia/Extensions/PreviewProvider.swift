@@ -38,7 +38,12 @@ class DeveloperPreview{
                                  email: "nazarwelkakayew41@gmail.com",
                                  phoneNumber: "99365590939",
                                  createdDate: "200",
-                                 profile_image: "https://picsum.photos/id/1070/5472/3648")
+                                 profile_image: "https://picsum.photos/id/1070/5472/3648",
+                                 followers: [],
+                                 following: [],
+                                 receivedConnections: [],
+                                 sendedConnections: []
+    )
     
     let contact_2 = ContactModel(id: "",
                                  name: "John",
@@ -47,7 +52,12 @@ class DeveloperPreview{
                                  email: "jphndoe@gmail.com",
                                  phoneNumber: "99365123456",
                                  createdDate: "",
-                                 profile_image: "https://picsum.photos/id/1070/5472/3648")
+                                 profile_image: "https://picsum.photos/id/1070/5472/3648",
+                                 followers: [""],
+                                 following: [""],
+                                 receivedConnections: [],
+                                 sendedConnections: []
+    )
     
     let contact_3 = ContactModel(id: "",
                                  name: "Steve",
@@ -56,7 +66,12 @@ class DeveloperPreview{
                                  email: "stevejobs@gmail.com",
                                  phoneNumber: "99365123456",
                                  createdDate: "",
-                                 profile_image: "https://picsum.photos/id/1070/5472/3648")
+                                 profile_image: "https://picsum.photos/id/1070/5472/3648",
+                                 followers: [""],
+                                 following: [""],
+                                 receivedConnections: [],
+                                 sendedConnections: []
+    )
     
     
     let postCardModel = PostModel(id: "wertykjhgf2345678iuhgfdfg", author: "nazarwelkakayew41@gmail.com",

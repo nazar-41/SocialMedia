@@ -101,10 +101,14 @@ struct CreateProfile: View {
                                                    email: email,
                                                    phoneNumber: phoneNumber,
                                                    createdDate: "\(Date.now)",
-                                                   profile_image: "")
+                                                   profile_image: "",
+                                                   followers: [],
+                                                   following: [],
+                                                   receivedConnections: [],
+                                                   sendedConnections: [])
                         
                         //vm_createProfile.registerUser(user: contact)
-                        vm_createProfile.addUser(user: contact)
+                        vm_createProfile.addUser2(user: contact)
                         
                     } label: {
                         Text("Start")

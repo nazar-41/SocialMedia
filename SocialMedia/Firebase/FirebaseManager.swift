@@ -25,11 +25,12 @@ class FirebaseManager: ObservableObject{
     @Published var profile_image_url: String = ""
     
     init(){
-        fetchData()
+        getUsersList()
        // downloadProfileImage()
     }
     
-    func fetchData(){
+    func getUsersList(){
+        /*
         database.collection("users_list").getDocuments() { snapshot, error in
             guard error == nil else{
                 print("error fetching firebase firestore")
@@ -58,8 +59,33 @@ class FirebaseManager: ObservableObject{
                 }
             }
         }
+         */
+        
+        database.collection("users_list").addSnapshotListener {[weak self] querySnapshot, error in
+            guard error == nil else{
+                print("\n error getting user list")
+                return
+            }
+            
+            guard let users = querySnapshot?.documents else{
+                print("\n error fetching user list documents")
+                return
+            }
+            
+            guard let self = self else{return}
+            
+            self.users = users.compactMap{ user -> ContactModel? in
+                do{
+                    return try user.data(as: ContactModel.self)
+                }catch{
+                    print("\n error decoding user into ContactModel: \(error)")
+                    return nil
+                }
+            }
+        }
     }
     
+     
     private func unwrappedValue(document: QueryDocumentSnapshot, fieldName: String)-> String{
         return document[fieldName] as? String ?? "-"
     }
@@ -89,7 +115,7 @@ class FirebaseManager: ObservableObject{
         }
     }
      */
-    
+    /*
     func addUser(image: UIImage?, user: ContactModel){
         if let image = image {
             guard availableImageSize(image: image) else{return}
@@ -125,13 +151,16 @@ class FirebaseManager: ObservableObject{
                     
                     print("\n profile image download url: \(url)")
                     
-                    let data: [String: Any] = ["name" : user.name,
+                    let data: [String: Any] = ["id" : user.id,
+                                               "name" : user.name,
                                                "surname" : user.surname,
                                                "username" : user.username,
                                                "email" : self.email,
                                                "mobile" : user.phoneNumber,
                                                "created_date" : user.createdDate,
-                                               "profile_image" : self.profile_image_url]
+                                               "profile_image" : self.profile_image_url,
+                                               "followers": user.followers,
+                                               "following": user.following]
                     
                     self.database.collection(Constants.fb_userslist).addDocument(data: data) { error in
                         guard error == nil else{
@@ -140,19 +169,24 @@ class FirebaseManager: ObservableObject{
                         }
                       //  self.uploadImage(image: profileImage)
                         
-                        self.fetchData()
+                        self.getUsersList()
                         self.addSuccess = true
                     }
                 }
             }
         }else{
-            let data: [String: Any] = ["name" : user.name,
+            let data: [String: Any] = ["id": user.id,
+                                       "name" : user.name,
                                        "surname" : user.surname,
                                        "username" : user.username,
                                        "email" : user.email,
                                        "mobile" : user.phoneNumber,
                                        "created_date" : user.createdDate,
-                                       "profile_image" : ""]
+                                       "profile_image" : "",
+                                       "followers": user.followers,
+                                       "following": user.following]
+            
+            let document = database.collection(Constants.fb_userslist).document(user.id)
             
             database.collection(Constants.fb_userslist).addDocument(data: data) { error in
                 guard error == nil else{
@@ -161,11 +195,70 @@ class FirebaseManager: ObservableObject{
                 }
                // self.uploadImage(image: profileImage)
                 
-                self.fetchData()
+                self.getUsersList()
                 self.addSuccess = true
             }
         }
     }
+     */
+    
+    func addUser2(user: ContactModel, image: UIImage?){
+        if let image = image{
+            guard let data = image.pngData() else{ return }
+            
+            let storageRef = Storage.storage().reference()
+            let profileImageFolderRef = storageRef.child("profile_images/\(email).png")
+            
+            profileImageFolderRef.putData(data) { metadata, error in
+                guard error == nil else{return}
+                
+                profileImageFolderRef.downloadURL {[weak self] url, error in
+                    guard error == nil,
+                          let url = url,
+                          let self = self else{ return }
+                    
+                    self.profile_image_url = url.absoluteString
+
+                    if !self.profile_image_url.isEmpty{
+                        
+                        var newUser = user
+                        newUser.profile_image = self.profile_image_url
+                        
+                        
+                        do {
+                            try self.database.collection(Constants.fb_userslist).document(user.id).setData(from: user)
+                        } catch {
+                            print("\n error creating user: \(error)")
+                        }
+                        
+                    }else{
+                        print("\n image url is empty")
+                    }
+                }
+            }
+        }else{
+            do {
+                try database.collection(Constants.fb_userslist).document(user.id).setData(from: user.self)
+            } catch {
+                print("\n error creating user: \(error)")
+            }
+        }
+    }
+    
+    /*
+     func sharePost2(post: PostModel, environment: Binding<PresentationMode>){
+         do {
+             try database.collection("posts").document(post.id).setData(from: post)
+         } catch {
+             print("\n error posting data: \(error)")
+         }
+         
+         
+         defer{
+             environment.wrappedValue.dismiss()
+         }
+     }
+     */
     
     func downloadProfileImage(){
         let folderReference = Storage.storage().reference()

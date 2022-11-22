@@ -16,5 +16,9 @@ struct ContactModel: Identifiable, Codable, Hashable{
     let email: String
     let phoneNumber: String
     let createdDate: String
-    let profile_image: String
+    var profile_image: String
+    var followers: [String]
+    var following: [String]
+    var receivedConnections: [String]
+    var sendedConnections: [String]
 }

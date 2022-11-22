@@ -27,9 +27,11 @@ class VM_CreateProfile: ObservableObject{
     let firebaseManager = FirebaseManager()
     
     private var cancellables = Set<AnyCancellable>()
-    
+    /*
     func registerUser(user: ContactModel){
-        firebaseManager.addUser(image: profileImage, user: user)
+       // firebaseManager.addUser2(image: profileImage, user: user)
+        firebaseManager.addUser2(user: user, image: profileImage)
+        
         
         defer{
             firebaseManager.$users
@@ -51,8 +53,8 @@ class VM_CreateProfile: ObservableObject{
             
         }
     }
-    
-    
+    */
+    /*
     func addUser(user: ContactModel){
         if let image = profileImage {
           //  guard availableImageSize(image: image) else{return}
@@ -106,7 +108,7 @@ class VM_CreateProfile: ObservableObject{
                        // self.isSuccess = isSuccess
                        // self.loggedIn = true
                         
-                        self.firebaseManager.fetchData()
+                        self.firebaseManager.getUsersList()
                         self.isSuccess = true
                         self.loggedIn = true
                     }
@@ -129,13 +131,68 @@ class VM_CreateProfile: ObservableObject{
                // self.uploadImage(image: profileImage)
                // self.email = user.email
 
-                self.firebaseManager.fetchData()
+                self.firebaseManager.getUsersList()
                 self.isSuccess = true
                 self.loggedIn = true
 
             }
         }
     }
+    */
+    
+    func addUser2(user: ContactModel){
+        if let image = profileImage{
+            guard let data = image.pngData() else{ return }
+            
+            let storageRef = Storage.storage().reference()
+            let profileImageFolderRef = storageRef.child("profile_images/\(email).png")
+            
+            profileImageFolderRef.putData(data) { metadata, error in
+                guard error == nil else{return}
+                
+                profileImageFolderRef.downloadURL {[weak self] url, error in
+                    guard error == nil,
+                          let url = url,
+                          let self = self else{ return }
+                    
+
+                    if !url.absoluteString.isEmpty{
+                        
+                        var newUser = user
+                        newUser.profile_image = url.absoluteString
+                        
+                        
+                        do {
+                            try self.database.collection(Constants.fb_userslist).document(newUser.id).setData(from: newUser)
+                            
+                            self.firebaseManager.getUsersList()
+                            self.isSuccess = true
+                            self.loggedIn = true
+                            
+                        } catch {
+                            print("\n error creating user: \(error)")
+                        }
+                        
+                    }else{
+                        print("\n image url is empty")
+                    }
+                }
+            }
+        }else{
+            do {
+                try database.collection(Constants.fb_userslist).document(user.id).setData(from: user.self)
+                
+                self.firebaseManager.getUsersList()
+                self.isSuccess = true
+                self.loggedIn = true
+                
+            } catch {
+                print("\n error creating user: \(error)")
+            }
+        }
+    }
+
+    
     func downloadProfileImage(){
         let folderReference = Storage.storage().reference()
         let imageReference = folderReference.child("profile_images/\(email).png")
@@ -157,5 +214,4 @@ class VM_CreateProfile: ObservableObject{
             
         }
     }
-
 }

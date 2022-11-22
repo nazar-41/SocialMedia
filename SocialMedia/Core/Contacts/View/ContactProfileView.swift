@@ -13,6 +13,8 @@ struct ContactProfileView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
+    @EnvironmentObject private var globalDownload: GlobalDownload
+    @StateObject private var vm_contactProfileView = VM_ContactProfileView()
     
     var body: some View {
         VStack{
@@ -25,40 +27,14 @@ struct ContactProfileView: View {
                 }
                 .padding(5)
                 
-                Button {
-                    //more core here
-                } label: {
-                    HStack{
-                        Image(systemName: "bag")
-                            .font(.system(size: 13, weight: .heavy))
-                        
-                        Text(contact.username)
-                            .font(.system(size: 19, weight: .heavy))
-                    }
-                }
                 
+                Image(systemName: "bag")
+                    .font(.system(size: 13, weight: .heavy))
                 
-                
+                Text(contact.username)
+                    .font(.system(size: 19, weight: .heavy))
                 
                 Spacer()
-                
-                Button {
-                    //more code here
-                } label: {
-                    Image(systemName: "plus.square")
-                        .font(.system(size: 19, weight: .semibold))
-                }
-                
-                
-                Button {
-                    //more code here
-                } label: {
-                    Image(systemName: "text.justify")
-                        .font(.system(size: 19, weight: .semibold))
-                }
-                
-                
-                
                 
             }
             
@@ -69,16 +45,19 @@ struct ContactProfileView: View {
                 
                 VStack{
                     Button {
-                        //
+                        vm_contactProfileView.sendConnction(contactID: contact.id, list: globalDownload.userList, currentUserID: globalDownload.currentUser?.id)
                     } label: {
-                        ZStack{
-                            Color.gray.opacity(0.15)
-                                .cornerRadius(10)
-                            
-                            Text("Edit profile")
-                                .font(.system(size: 14, weight: .bold))
+                        HStack{
+                            Text("Follow")
+                                
+                            Image(systemName: "plus")
                         }
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(.white)
                         .frame(height: 30)
+                        .frame(maxWidth: .infinity)
+                        .background(.blue.opacity(1))
+                        .cornerRadius(10)
                     }
                 }
                 
@@ -94,8 +73,6 @@ struct ContactProfileView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                         .padding(.top, 200)
                 }
-                
-                
             }
             
             

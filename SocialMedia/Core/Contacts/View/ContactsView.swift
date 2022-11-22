@@ -12,6 +12,8 @@ struct ContactsView: View {
     @EnvironmentObject private var vm_exploreView: VM_ExploreView
     @EnvironmentObject private var globalDownload: GlobalDownload
     
+    @AppStorage("email") private var currentUserEmail: String = ""
+    
     var body: some View {
         VStack{
             HStack{
@@ -55,18 +57,19 @@ struct ContactsView: View {
                 
                 if let allContacts = vm_contactsView.allContacts{
                     ForEach(allContacts) { contact in
-                        NavigationLink {
-                            ContactProfileView(contact: contact)
-                                .environmentObject(vm_exploreView)
-                                .environmentObject(globalDownload)
-                        } label: {
-                            ContactRowView(contact: contact)
+                        if contact.email != currentUserEmail{
+                            NavigationLink {
+                                ContactProfileView(contact: contact)
+                                    .environmentObject(vm_exploreView)
+                                    .environmentObject(globalDownload)
+                            } label: {
+                                ContactRowView(contact: contact)
+                                
+                            }
+                            .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
+                            .contentShape(Rectangle())
                             
                         }
-                        .listRowInsets(.init(top: 2, leading: 2, bottom: 2, trailing: 2))
-                        .contentShape(Rectangle())
-                        
-                        
                         
                     }
                 }

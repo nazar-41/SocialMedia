@@ -12,28 +12,34 @@ import FirebaseFirestoreSwift
 class VM_ContactProfileView: ObservableObject{
     private let database = Firestore.firestore()
     
-    func sendConnction(contactID: String, list: [ContactModel]?, currentUserID: String?){
-        guard let list = list,
-        let currentUserID = currentUserID else{return}
-        
-        guard var contact = list.first(where: {$0.id == contactID}) else{
-            print("\n invalid contact")
+    @Published var followers: Int = 0
+    @Published var followings: Int = 0
+    @Published var posts: Int = 0
+    
+    func sendConnction(contact: ContactModel, currentUser: ContactModel?){
+        guard var currentUser = currentUser else{return}
+                
+        guard !contact.receivedConnections.contains(currentUser.id) else{
+            print("\n connection can't be send twice: user: \(currentUser)")
             return
         }
         
+        var copiedContact = contact
         
-        guard !contact.receivedConnections.contains(currentUserID) else{
-            print("\n connection can't be send twice: user: \(currentUserID)")
-            return
-        }
-        
-        contact.receivedConnections.append(currentUserID)
+        copiedContact.receivedConnections.append(currentUser.id)
+        currentUser.sendedConnections.append(copiedContact.id)
         
         do {
-            try database.collection("users_list").document(contactID).setData(from: contact)
+            try database.collection("users_list").document(contact.id).setData(from: copiedContact)
+            try database.collection("users_list").document(currentUser.id).setData(from: currentUser)
         } catch {
             print("\n error sending connection to user: \(error)")
         }
+    }
+    
+    func getContactInfo(contact: ContactModel){
+        self.followers = contact.followers.count
+        self.followings = contact.following.count
         
     }
 }

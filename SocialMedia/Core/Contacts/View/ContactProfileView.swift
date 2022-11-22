@@ -45,7 +45,7 @@ struct ContactProfileView: View {
                 
                 VStack{
                     Button {
-                        vm_contactProfileView.sendConnction(contactID: contact.id, list: globalDownload.userList, currentUserID: globalDownload.currentUser?.id)
+                        vm_contactProfileView.sendConnction(contact: contact, currentUser: globalDownload.currentUser)
                     } label: {
                         HStack{
                             Text("Follow")
@@ -82,9 +82,11 @@ struct ContactProfileView: View {
             
         }
         .padding()
-        // .foregroundColor(.white)
         .accentColor(.black)
         .navigationBarHidden(true)
+        .onAppear{
+            vm_contactProfileView.getContactInfo(contact: contact)
+        }
         
     }
 }
@@ -127,22 +129,22 @@ extension ContactProfileView{
                 
                 HStack(spacing: 30){
                     VStack(spacing: 5){
-                        Text("12")
+                        Text("\(vm_contactProfileView.posts)")
                         
                         Text("Posts")
                     }
                     .font(.system(size: 14, weight: .bold))
                     
                     VStack(spacing: 5){
-                        Text("142")
+                        Text("\(vm_contactProfileView.followers)")
                         
                         Text("Followers")
                     }
                     .font(.system(size: 14, weight: .bold))
                     
                     VStack(spacing: 5){
-                        Text("98")
-                        
+                        Text("\(vm_contactProfileView.followings)")
+
                         Text("Following")
                     }
                     .font(.system(size: 14, weight: .bold))

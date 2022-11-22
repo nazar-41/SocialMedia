@@ -50,10 +50,6 @@ struct ProfileView: View {
                     Image(systemName: "text.justify")
                         .font(.system(size: 19, weight: .semibold))
                 }
-
-                
-
-                
             }
             
             
@@ -92,9 +88,7 @@ struct ProfileView: View {
                 
                 
             }
-            
-            
-            
+                        
             
             Spacer()
             
@@ -111,9 +105,13 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
+        NavigationView{
+            
         ProfileView()
             .environmentObject(VM_ExploreView())
             .environmentObject(GlobalDownload())
+        }
+
     }
 }
 
@@ -127,48 +125,12 @@ extension ProfileView{
                 Button {
                     //more code here
                 } label: {
-                    /*
-                    if let image = vm_profileView.profileImage{
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .overlay (
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .symbolRenderingMode(.multicolor)
-                                    .foregroundColor(.blue)
-                                    .frame(width: 20, height: 20)
-                                
-                                , alignment: .bottomTrailing
-                            )
-                    }else{
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .overlay (
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .symbolRenderingMode(.multicolor)
-                                    .foregroundColor(.blue)
-                                    .frame(width: 20, height: 20)
-                                
-                                , alignment: .bottomTrailing
-                            )
-                    }
-                     */
-                    if let currentUser = global_download.currentUser{
-                        WebImage(url: URL(string: currentUser.profile_image))
+                    WebImage(url: URL(string: global_download.currentUser?.profile_image ?? ""))
                             .placeholder {
                                 Image(systemName: "person.crop.circle.fill")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
                                     .overlay (
                                         Image(systemName: "plus.circle.fill")
                                             .resizable()
@@ -183,53 +145,48 @@ extension ProfileView{
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                    }else{
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .overlay (
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .symbolRenderingMode(.multicolor)
-                                    .foregroundColor(.blue)
-                                    .frame(width: 20, height: 20)
-                                
-                                , alignment: .bottomTrailing
-                            )
-                    }
                     
                 }
                 
                 
                 Spacer()
                 
-                HStack(spacing: 30){
+                HStack{
                     VStack(spacing: 5){
-                        Text("12")
-                        
-                        Text("Posts")
-                    }
-                    .font(.system(size: 14, weight: .bold))
-                    
-                    VStack(spacing: 5){
-                        Text("142")
+                        Text("\(vm_profileView.followers.count)")
                         
                         Text("Followers")
                     }
                     .font(.system(size: 14, weight: .bold))
                     
+                    Spacer()
+                    
                     VStack(spacing: 5){
-                        Text("98")
-                        
-                        Text("Following")
+                        Text("\(vm_profileView.followings.count)")
+
+                        Text("Followings")
                     }
                     .font(.system(size: 14, weight: .bold))
                     
+                    Spacer()
+                    
+                    NavigationLink{
+                        ReceivedInvitationsView(receivedList: vm_profileView.receivedConnections)
+                            .environmentObject(global_download)
+                            .navigationBarHidden(true)
+                    }label: {
+                        VStack(spacing: 5){
+                            Text("\(vm_profileView.receivedConnections.count)")
+
+                            Text("Invitations")
+                        }
+                        .font(.system(size: 14, weight: .bold))
+                    }
+    
+                    
                     
                 }
+                .padding(.horizontal, 10)
                 .font(.system(size: 13, weight: .semibold))
                 
             }

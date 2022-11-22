@@ -19,6 +19,10 @@ class VM_ProfileView: ObservableObject{
     @Published var userProfile: ContactModel? = nil
     @Published var profileImage: UIImage? = nil
     
+    @Published var followers: [String] = []
+    @Published var followings: [String] = []
+    @Published var receivedConnections: [String] = []
+    
     init(){
         getProfileData()
     }
@@ -32,7 +36,8 @@ class VM_ProfileView: ObservableObject{
                 
                 if let data = returnnedList.first(where: {$0.email == self.email}){
                     self.userProfile = data
-                  //  self.downloadProfileImage()
+                    
+                    self.getConnectionInfo()
                 }
             }
             .store(in: &cancellables)
@@ -43,6 +48,16 @@ class VM_ProfileView: ObservableObject{
                 self.profileImage = returnedImage
             }
             .store(in: &cancellables)
+        
+        
+    }
+    
+    private func getConnectionInfo(){
+        guard let currentUser = userProfile else{return}
+        
+        self.followers = currentUser.followers
+        self.followings = currentUser.following
+        self.receivedConnections = currentUser.receivedConnections
         
         
     }

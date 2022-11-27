@@ -103,7 +103,7 @@ class GlobalDownload: ObservableObject{
         }
         
         currentUser = userList.first(where: {$0.email == currentUserEmail})
-        print("currentuser: \(String(describing: currentUser))")
+       // print("currentuser: \(String(describing: currentUser))")
         
         if self.userList == nil{
             print("\n reload user data")

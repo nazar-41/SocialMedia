@@ -171,14 +171,15 @@ extension ProfileView{
                     Spacer()
                     
                     NavigationLink{
-                        ReceivedInvitationsView(receivedList: vm_profileView.receivedConnections)
+                        ReceivedInvitationsView(receivedList: vm_profileView.receivedConnections,
+                                                pendingList: vm_profileView.pendingConnections)
                             .environmentObject(global_download)
                             .navigationBarHidden(true)
                     }label: {
                         VStack(spacing: 5){
-                            Text("\(vm_profileView.receivedConnections.count)")
+                            Text("\(vm_profileView.receivedConnections.count + vm_profileView.pendingConnections.count)")
 
-                            Text("Invitations")
+                            Text("Requests")
                         }
                         .font(.system(size: 14, weight: .bold))
                     }

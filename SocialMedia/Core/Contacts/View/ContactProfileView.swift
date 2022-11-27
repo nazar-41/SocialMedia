@@ -48,17 +48,27 @@ struct ContactProfileView: View {
                         vm_contactProfileView.sendConnction(contact: contact, currentUser: globalDownload.currentUser)
                     } label: {
                         HStack{
-                            Text("Follow")
-                                
-                            Image(systemName: "plus")
+                            if isPending{
+                                Text("Pending...")
+                            }else if isFollowing{
+                                Text("Following")
+                            }
+                            else{
+                                Text("Follow")
+                                    
+                                Image(systemName: "plus")
+                            }
+                            
+            
                         }
                         .font(.system(size: 14, weight: .bold))
                         .foregroundColor(.white)
                         .frame(height: 30)
                         .frame(maxWidth: .infinity)
-                        .background(.blue.opacity(1))
+                        .background((isFollowing || isPending) ? .gray.opacity(0.5) : .blue)
                         .cornerRadius(10)
                     }
+                    .disabled(isFollowing || isPending)
                 }
                 
                 if !vm_exploreView.compositionalArray.isEmpty{
@@ -89,12 +99,21 @@ struct ContactProfileView: View {
         }
         
     }
+    
+    var isFollowing: Bool{
+        return contact.followers.first(where: {$0 == globalDownload.currentUser?.id}) != nil
+    }
+    
+    var isPending: Bool{
+        return globalDownload.currentUser?.sendedConnections.first(where: {$0 == contact.id}) != nil
+    }
 }
 
 struct ContactProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ContactProfileView(contact: dev.contact_1)
             .environmentObject(VM_ExploreView())
+            .environmentObject(GlobalDownload())
     }
 }
 
@@ -104,10 +123,6 @@ extension ContactProfileView{
     @ViewBuilder private func mainInfo()-> some View{
         VStack(spacing: 10){
             HStack{
-                
-                Button {
-                    //more code here
-                } label: {
                     Image(systemName: "person.crop.circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -122,7 +137,6 @@ extension ContactProfileView{
                             
                             , alignment: .bottomTrailing
                         )
-                }
                 
                 
                 Spacer()

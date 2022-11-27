@@ -15,7 +15,7 @@ class ExploreViewDataService{
     var exploreSubscription: AnyCancellable?
     
     init(){
-        getExploreData()
+       // getExploreData()
     }
     
     

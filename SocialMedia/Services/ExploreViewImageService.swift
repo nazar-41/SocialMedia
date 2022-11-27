@@ -18,7 +18,7 @@ class ExploreViewImageService{
     init(exploreCard: ExploreCardModel){
         self.excplore = exploreCard
         
-        getImage()
+        //getImage()
     }
     
     

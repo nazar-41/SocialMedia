@@ -22,6 +22,7 @@ class VM_ProfileView: ObservableObject{
     @Published var followers: [String] = []
     @Published var followings: [String] = []
     @Published var receivedConnections: [String] = []
+    @Published var pendingConnections: [String] = []
     
     init(){
         getProfileData()
@@ -58,6 +59,7 @@ class VM_ProfileView: ObservableObject{
         self.followers = currentUser.followers
         self.followings = currentUser.following
         self.receivedConnections = currentUser.receivedConnections
+        self.pendingConnections = currentUser.sendedConnections
         
         
     }

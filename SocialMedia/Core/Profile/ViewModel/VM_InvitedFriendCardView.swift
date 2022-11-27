@@ -28,7 +28,7 @@ class VM_InvitedFriendCardView: ObservableObject{
         
     }
     
-    func acceptContact(currentUser: ContactModel?){
+    func acceptRequest(currentUser: ContactModel?){
         guard var currentUser = currentUser,
               var contact = contact else{return}
         
@@ -46,9 +46,34 @@ class VM_InvitedFriendCardView: ObservableObject{
         }
     }
     
-    func rejectContact(){
+    func rejectRequest(currentUser: ContactModel?){
+        guard var currentUser = currentUser,
+              var contact = contact else{return}
         
+        currentUser.receivedConnections.removeAll(where: {$0 == contact.id})
+        contact.sendedConnections.removeAll(where: {$0 == currentUser.id})
+        
+        do {
+            try database.collection("users_list").document(currentUser.id).setData(from: currentUser)
+            try database.collection("users_list").document(contact.id).setData(from: contact)
+        } catch {
+            print("\n error rejecting connection: \(error)")
+        }
     }
+    
+    func cancelSentRequest(currentUser: ContactModel?){
+        guard var currentUser = currentUser,
+              var contact = contact else{return}
+        
+        currentUser.receivedConnections.removeAll(where: {$0 == contact.id})
+        contact.sendedConnections.removeAll(where: {$0 == currentUser.id})
+        
+        do {
+            try database.collection("users_list").document(currentUser.id).setData(from: currentUser)
+            try database.collection("users_list").document(contact.id).setData(from: contact)
+        } catch {
+            print("\n error cancelling connection: \(error)")
+        }    }
     
     /*
      func sendConnction(contact: ContactModel, currentUser: ContactModel?){

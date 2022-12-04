@@ -70,7 +70,9 @@
 		A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */; };
 		A8B9B571290BF9E700DCD70F /* GlobalDowload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */; };
 		A8B9B573290C07B700DCD70F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9B572290C07B700DCD70F /* HomeView.swift */; };
+		A8C5D120293CC75200DA5553 /* UpdatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C5D11F293CC75200DA5553 /* UpdatePostView.swift */; };
 		A8D32C8B29332AAD004C4280 /* PendingRequestEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D32C8A29332AAD004C4280 /* PendingRequestEnum.swift */; };
+		A8D32C9029335D21004C4280 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D32C8F29335D21004C4280 /* NotificationModel.swift */; };
 		A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */; };
 		A8EACF7929094A4C004F8C97 /* VM_ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */; };
 		A8FFEFDB290572AD007B5149 /* VM_ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */; };
@@ -136,7 +138,11 @@
 		A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		A8B9B570290BF9E700DCD70F /* GlobalDowload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDowload.swift; sourceTree = "<group>"; };
 		A8B9B572290C07B700DCD70F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A8C5D11F293CC75200DA5553 /* UpdatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostView.swift; sourceTree = "<group>"; };
 		A8D32C8A29332AAD004C4280 /* PendingRequestEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestEnum.swift; sourceTree = "<group>"; };
+		A8D32C8D29335938004C4280 /* SocialMedia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialMedia.entitlements; sourceTree = "<group>"; };
+		A8D32C8E29335953004C4280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A8D32C8F29335D21004C4280 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		A8E3CED9290021D700ECB2E8 /* VM_ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ContactsView.swift; sourceTree = "<group>"; };
 		A8EACF7829094A4C004F8C97 /* VM_ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ProfileView.swift; sourceTree = "<group>"; };
 		A8FFEFDA290572AD007B5149 /* VM_ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ChatListView.swift; sourceTree = "<group>"; };
@@ -191,6 +197,8 @@
 		A86311F428FD63A200CFA3EF /* SocialMedia */ = {
 			isa = PBXGroup;
 			children = (
+				A8D32C8E29335953004C4280 /* Info.plist */,
+				A8D32C8D29335938004C4280 /* SocialMedia.entitlements */,
 				A8AE6D512902C127000E16AC /* Firebase */,
 				A8AD820A2900272C00B1EB0F /* DirectChatView */,
 				A86B722B28FEF089000DF147 /* Modifiers */,
@@ -254,6 +262,7 @@
 				A893DB602903FBE500266EE8 /* PostCardModel.swift */,
 				A8701CEE290ABAD100A45E40 /* PostModel.swift */,
 				A8D32C8A29332AAD004C4280 /* PendingRequestEnum.swift */,
+				A8D32C8F29335D21004C4280 /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -532,6 +541,7 @@
 			children = (
 				A8FFEFDF29057582007B5149 /* CreatePostView.swift */,
 				A8B9B56E290BE5AC00DCD70F /* PostCardView.swift */,
+				A8C5D11F293CC75200DA5553 /* UpdatePostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -663,11 +673,13 @@
 				A8E3CEDA290021D700ECB2E8 /* VM_ContactsView.swift in Sources */,
 				A8724038290157A300E58E4B /* ContactProfileView.swift in Sources */,
 				A882511828FEB429008C3407 /* SearchBarView.swift in Sources */,
+				A8C5D120293CC75200DA5553 /* UpdatePostView.swift in Sources */,
 				A878E6EE290018F60038B9ED /* ContactRowView.swift in Sources */,
 				A89F002428FD92760070B280 /* VM_ExploreCardImageView.swift in Sources */,
 				A884DE252906B9D70019DDA4 /* ImagePicker.swift in Sources */,
 				A8572FEE29191B13000C42C3 /* VM_PostCardView.swift in Sources */,
 				A8B9B56F290BE5AC00DCD70F /* PostCardView.swift in Sources */,
+				A8D32C9029335D21004C4280 /* NotificationModel.swift in Sources */,
 				A8701CEF290ABAD100A45E40 /* PostModel.swift in Sources */,
 				A893DB5F2903F64F00266EE8 /* PostItemView.swift in Sources */,
 				A85FF47B2908183C00B7C938 /* VM_CreateProfile.swift in Sources */,
@@ -815,12 +827,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SocialMedia/SocialMedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialMedia/Preview Content\"";
 				DEVELOPMENT_TEAM = A8UD4U7C7A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocialMedia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -845,12 +859,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SocialMedia/SocialMedia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialMedia/Preview Content\"";
 				DEVELOPMENT_TEAM = A8UD4U7C7A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SocialMedia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

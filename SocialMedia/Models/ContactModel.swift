@@ -21,4 +21,6 @@ struct ContactModel: Identifiable, Codable, Hashable{
     var following: [String]
     var receivedConnections: [String]
     var sendedConnections: [String]
+    
+    let not_token: String
 }

@@ -42,7 +42,8 @@ class DeveloperPreview{
                                  followers: [],
                                  following: [],
                                  receivedConnections: [],
-                                 sendedConnections: []
+                                 sendedConnections: [],
+                                 not_token: "f25ptlbuSUwWtr0MsnKuhI:APA91bE0wazWI1iHH9wZFqNTh6_OiLcphhJ_nTU7Khcfj0we1r-XWdeFWvIjJVeKulmM-eBM3sHl9mmvSRpYx8xvoToQTBBiUgIEQdWTQAEeaNtlC75EPRCwlZdrvawD5TsVuIHY9Iv5"
     )
     
     let contact_2 = ContactModel(id: "",
@@ -56,7 +57,8 @@ class DeveloperPreview{
                                  followers: [""],
                                  following: [""],
                                  receivedConnections: [],
-                                 sendedConnections: []
+                                 sendedConnections: [],
+                                 not_token: "f25ptlbuSUwWtr0MsnKuhI:APA91bE0wazWI1iHH9wZFqNTh6_OiLcphhJ_nTU7Khcfj0we1r-XWdeFWvIjJVeKulmM-eBM3sHl9mmvSRpYx8xvoToQTBBiUgIEQdWTQAEeaNtlC75EPRCwlZdrvawD5TsVuIHY9Iv5"
     )
     
     let contact_3 = ContactModel(id: "",
@@ -70,7 +72,8 @@ class DeveloperPreview{
                                  followers: [""],
                                  following: [""],
                                  receivedConnections: [],
-                                 sendedConnections: []
+                                 sendedConnections: [],
+                                 not_token: "f25ptlbuSUwWtr0MsnKuhI:APA91bE0wazWI1iHH9wZFqNTh6_OiLcphhJ_nTU7Khcfj0we1r-XWdeFWvIjJVeKulmM-eBM3sHl9mmvSRpYx8xvoToQTBBiUgIEQdWTQAEeaNtlC75EPRCwlZdrvawD5TsVuIHY9Iv5"
     )
     
     

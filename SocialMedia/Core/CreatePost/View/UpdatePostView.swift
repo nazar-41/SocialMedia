@@ -1,26 +1,27 @@
 //
-//  CreatePostView.swift
+//  UpdatePostView.swift
 //  SocialMedia
 //
-//  Created by Belli's MacBook on 23/10/2022.
+//  Created by Belli's MacBook on 04/12/2022.
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct CreatePostView: View {
+struct UpdatePostView: View {
     @Environment(\.presentationMode) private var presentationMode
-    
-    @StateObject private var vm_createPostView = VM_CreatePostView()
-    
-    @AppStorage("email") private var email: String = ""
-    
-    @State private var postText: String = ""
-    
     @State private var showImagePickerSheet: Bool = false
+    
+    @State private var image: UIImage?
+    
+    
+    @State var updatePostModel: PostModel
+
+    @EnvironmentObject private var globalDownload: GlobalDownload
     
     
     let defaultPlaceholder: String = "What do you want to talk about?"
-    
+
     var body: some View {
         VStack(spacing: 0){
             header
@@ -41,13 +42,13 @@ struct CreatePostView: View {
 
                     ZStack(alignment: .topLeading){
                         
-                        TextEditor(text: $postText)
+                        TextEditor(text: $updatePostModel.text)
                             .font(.subheadline)
                             .frame(height: 300)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10).stroke(.gray.opacity(0.5)))
                             .overlay(
-                                    Text(postText.isEmpty ? defaultPlaceholder : "")
+                                    Text(updatePostModel.text.isEmpty ? defaultPlaceholder : "")
                                         .font(.subheadline)
                                         .disabled(true)
                                         .padding(10)
@@ -79,13 +80,26 @@ struct CreatePostView: View {
                 .padding(.horizontal)
                 .padding(.top)
                 .overlay (
-                    Image(uiImage: vm_createPostView.image ?? UIImage())
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
-                            .padding(.bottom, 30)
-                            .padding(.trailing, 10)
+                    VStack{
+                        if let url = URL(string: updatePostModel.image ?? ""){
+                            WebImage(url: url)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 60, height: 60)
+                                .padding(.bottom, 30)
+                                .padding(.trailing, 10)
+                        }else{
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 60, height: 60)
+                                .padding(.bottom, 30)
+                                .padding(.trailing, 10)
+                        }
+                    }
+
                     
                     ,alignment: .bottomTrailing
                 )
@@ -101,30 +115,28 @@ struct CreatePostView: View {
             
         }
         .sheet(isPresented: $showImagePickerSheet, content: {
-            ImagePicker(image: $vm_createPostView.image)
+            ImagePicker(image: $image)
         })
         .onTapGesture {
             UIApplication.shared.endEditing()
         }
     }
-    
 }
 
-
-struct CreatePostView_Previews: PreviewProvider {
+struct UpdatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView()
+        UpdatePostView(updatePostModel: dev.postCardModel)
     }
 }
 
 
-extension CreatePostView{
+extension UpdatePostView{
     @ViewBuilder private var header: some View{
-        ZStack(alignment: .top){
+        ZStack(alignment: .center){
             Color(.gray).opacity(0.1)
                 .edgesIgnoringSafeArea(.top)
             
-            HStack{
+            HStack(alignment: .center){
                 Button {
                     //more code here
                     presentationMode.wrappedValue.dismiss()
@@ -137,34 +149,20 @@ extension CreatePostView{
                 
                 Spacer()
                 
-                Text("Start post")
+                Text("Update post")
                 
                 Spacer()
                 
                 Button {
                     //more code here
-                    let newPost = PostModel(id: UUID().uuidString, author: email,
-                                            text: postText,
-                                            image: "",
-                                            date: "\(Date())",
-                                            likes: [],
-                                            comments: nil)
-                    
-                    if let postImage = vm_createPostView.image{
-                        vm_createPostView.sharePostWithImage(image: postImage, post: newPost, environment: presentationMode)
-                        print("\n post with image")
-                    }else{
-                        vm_createPostView.sharePost2(post: newPost, environment: presentationMode)
-                        print("\n post without image")
-                    }
+                    globalDownload.updatePost(post: updatePostModel, presentationMode: presentationMode)
                     
                 } label: {
-                    Text("Post")
+                    Text("Update")
                         .padding(.vertical, 5)
-                        .frame(width: 50)
-                        .foregroundColor(postText.isEmpty ? .gray : .black)
+                        .foregroundColor(updatePostModel.text.isEmpty ? .gray : .black)
                 }
-                .disabled(postText.isEmpty)
+                .disabled(updatePostModel.text.isEmpty)
                 
                 
             }
@@ -172,6 +170,7 @@ extension CreatePostView{
             .font(.headline)
             
         }
-        .frame(height: 40)
+        .frame(height: 50)
     }
+
 }

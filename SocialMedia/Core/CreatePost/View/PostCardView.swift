@@ -16,6 +16,11 @@ struct PostCardView: View {
     
     @State private var showCommentSheet: Bool = false
     
+    @State private var showUpdateSheet: Bool = false
+    
+    @AppStorage("email") private var email: String = ""
+
+    
     
     var body: some View {
         VStack(spacing: 0){
@@ -31,7 +36,7 @@ struct PostCardView: View {
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
                 
-                if let authorData = getAuthorData(userList: userList){
+                if let authorData = getAuthorData(){
                     VStack(alignment: .leading){
                         Text("\(authorData.name) \(authorData.surname)")
                             .font(.system(size: 15, weight: .bold))
@@ -48,7 +53,7 @@ struct PostCardView: View {
                 
                 Spacer()
                 
-                
+    
             }
             
             VStack{
@@ -70,26 +75,12 @@ struct PostCardView: View {
                         }
                         .scaledToFit()
                         .frame(width: UIScreen.main.bounds.width)
-
+                    
                 }
-                
-//                if let image = vm_postCardView.postImage{
-//                    Image(uiImage: image)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: UIScreen.main.bounds.width)
-//
-//                }
             }
-           // .frame(minHeight: 50)
-            .border(.red)
-
-            
             
             HStack{
                 Button {
-                    //more code here
-                   // model.isLiked.toggle()
                     globaldownload.likeGivenPost(id: postModel.id)
                 } label: {                    
                     Image(systemName: globaldownload.doesPostLiked(postID: postModel.id) ? "heart.fill" : "heart")
@@ -97,7 +88,6 @@ struct PostCardView: View {
                 }
                 
                 Button {
-                    //more code here
                     showCommentSheet.toggle()
                 } label: {
                     Image(systemName: "message")
@@ -139,20 +129,52 @@ struct PostCardView: View {
                 .padding(10)
             
         }
+        .contentShape(Rectangle())
+        .contextMenu(postModel.author == email ?
+                     ContextMenu {
+            Button(role: .destructive) {
+                globaldownload.deleteMyPost(post: postModel)
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            
+            
+            Button {
+                showUpdateSheet = true
+            } label: {
+                Label("Update", systemImage: "pencil")
+            }
+
+        } : nil)
+        
         .sheet(isPresented: $showCommentSheet) {
             PostCommentsSheet(post: postModel)
                 .environmentObject(globaldownload)
+        }
+        .sheet(isPresented: $showUpdateSheet) {
+            UpdatePostView(updatePostModel: postModel)
+                .environmentObject(globaldownload)
+
         }
         
 
         
     }
     
-    private func getAuthorData(userList: [ContactModel])-> ContactModel?{
+    private func getAuthorData()-> ContactModel?{
         
         return userList.first(where: {$0.email == postModel.author})
         
     }
+    
+
+    
+    private var isUsers: Bool{
+        return true
+    }
+    
+    
+
 }
 
 struct PostCardView_Previews: PreviewProvider {

@@ -12,8 +12,8 @@ struct PostModel: Identifiable, Codable{
     var id: String
     
     let author: String
-    let text: String
-    let image: String?
+    var text: String
+    var image: String?
     let date: String
     var likes: [String]
     var comments: [PostCommentModel]?

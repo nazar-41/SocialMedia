@@ -24,6 +24,8 @@ struct CreateProfile: View {
     @State private var phoneNumber: String = ""
     
     @AppStorage("email") private var email: String = ""
+    @AppStorage("not-token") private var notToken: String = ""
+
     
   //  let email: String
     
@@ -105,7 +107,8 @@ struct CreateProfile: View {
                                                    followers: [],
                                                    following: [],
                                                    receivedConnections: [],
-                                                   sendedConnections: [])
+                                                   sendedConnections: [],
+                                                   not_token: notToken)
                         
                         //vm_createProfile.registerUser(user: contact)
                         vm_createProfile.addUser2(user: contact)

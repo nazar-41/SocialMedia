@@ -21,6 +21,7 @@ struct RegisterUser: View {
     
     @AppStorage("loggedIn") private var loggedIn: Bool = false
     @AppStorage("email") private var loginEmail: String = ""
+    @AppStorage("not-token") private var notToken: String = ""
     
     //@StateObject private var
     

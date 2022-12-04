@@ -15,6 +15,8 @@ struct PostCommentsSheet: View {
     @EnvironmentObject private var global_download: GlobalDownload
     @Environment(\.presentationMode) private var presentationMode
     
+    @AppStorage("email") private var email: String = ""
+    
     var body: some View {
         VStack{
             HStack{
@@ -38,7 +40,19 @@ struct PostCommentsSheet: View {
                         Text(comment.comment)
                             .font(.headline)
                     }
+                    .contentShape(Rectangle())
+                    .contextMenu(post.author == email ?
+                                 ContextMenu {
+                        Button(role: .destructive) {
+                            global_download.deleteComment(post: post, commentID: comment.id)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+
+                    } : nil)
+    
                 }
+                .listStyle(.plain)
                 
             }else{
                 Spacer()

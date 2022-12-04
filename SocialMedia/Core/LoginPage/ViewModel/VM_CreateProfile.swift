@@ -18,6 +18,8 @@ class VM_CreateProfile: ObservableObject{
     
     @AppStorage("email") private var email: String = ""
     @AppStorage("loggedIn") private var loggedIn: Bool = false
+    @AppStorage("not-token") private var notToken: String = ""
+
     
     private let database = Firestore.firestore()
 

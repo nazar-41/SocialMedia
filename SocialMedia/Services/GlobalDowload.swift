@@ -264,4 +264,42 @@ class GlobalDownload: ObservableObject{
         }
         return userList.first(where: {$0.email == email})
     }
+    
+    
+    
+    func deleteMyPost(post: PostModel){
+        
+        database.collection("posts").document(post.id).delete()
+        
+    }
+    
+    func updatePost(post: PostModel, presentationMode: Binding<PresentationMode>){
+        guard let postList = postList else{return}
+        
+        guard let p = postList.first(where: {$0.id == post.id}) else{return}
+        
+        do {
+            try self.database.collection("posts").document(p.id).setData(from: post)
+            presentationMode.wrappedValue.dismiss()
+        } catch {
+            print("\n error updating post: \(error)")
+            presentationMode.wrappedValue.dismiss()
+
+        }
+        
+    }
+    
+    
+    func deleteComment(post: PostModel, commentID: String){
+        var updated = post
+        updated.comments?.removeAll(where: {$0.id == commentID})
+        
+        do {
+            try self.database.collection("posts").document(post.id).setData(from: updated)
+        } catch {
+            print("\n error deleting comment: \(error)")
+        }
+        
+    }
+    
 }

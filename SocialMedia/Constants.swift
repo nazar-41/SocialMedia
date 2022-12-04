@@ -12,4 +12,6 @@ class Constants{
     
     static let fb_userslist: String = "users_list"
     
+    static let firebaseURL: String = "https://fcm.googleapis.com/fcm/send"
+    
 }

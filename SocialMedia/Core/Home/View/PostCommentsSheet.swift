@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct PostCommentsSheet: View {
     var post: PostModel
@@ -34,8 +35,25 @@ struct PostCommentsSheet: View {
             if let comments = post.comments{
                 List(comments){comment in
                     VStack(alignment: .leading){
-                        Text(global_download.getUserbyId(email: post.author)?.name ?? "")
-                            .font(.subheadline)
+                        HStack{
+                            WebImage(url: URL(string: global_download.getUserbyId(email: post.author)?.profile_image ?? ""))
+                                .resizable()
+                                .placeholder{
+                                    Image(systemName: "person.crop.circle.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.gray)
+                                        
+                                }
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                            
+                            
+                            Text(global_download.getUserbyId(email: post.author)?.name ?? "")
+                                .font(.subheadline)
+                            
+                        }
                         
                         Text(comment.comment)
                             .font(.headline)
